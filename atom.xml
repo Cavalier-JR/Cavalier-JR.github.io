@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Fetyloi&#39;s Blog</title>
+  
+  <subtitle>记录技术点滴</subtitle>
+  <link href="https://fetyloi.netlify.app/atom.xml" rel="self"/>
+  
+  <link href="https://fetyloi.netlify.app/"/>
+  <updated>2025-03-29T09:43:06.349Z</updated>
+  <id>https://fetyloi.netlify.app/</id>
+  
+  <author>
+    <name>Fetyloi</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Datacon2024漏洞分析赛道作品Vuln_wp漏洞挖掘源码分析</title>
+    <link href="https://fetyloi.netlify.app/2025/03/29/post5/"/>
+    <id>https://fetyloi.netlify.app/2025/03/29/post5/</id>
+    <published>2025-03-29T09:37:44.000Z</published>
+    <updated>2025-03-29T09:43:06.349Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="学习笔记" scheme="https://fetyloi.netlify.app/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="漏洞" scheme="https://fetyloi.netlify.app/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+    <category term="LLM" scheme="https://fetyloi.netlify.app/tags/LLM/"/>
+    
+    <category term="大模型" scheme="https://fetyloi.netlify.app/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="网络安全" scheme="https://fetyloi.netlify.app/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+    <category term="DataCon" scheme="https://fetyloi.netlify.app/tags/DataCon/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vulnhuntr大模型漏洞检测工具源码分析</title>
+    <link href="https://fetyloi.netlify.app/2025/03/25/post4/"/>
+    <id>https://fetyloi.netlify.app/2025/03/25/post4/</id>
+    <published>2025-03-25T08:17:52.000Z</published>
+    <updated>2025-03-26T12:05:00.896Z</updated>
+    
+    
+    <summary type="html">Here&#39;s something encrypted, password is required to continue reading.</summary>
+    
+    
+    
+    <category term="学习笔记" scheme="https://fetyloi.netlify.app/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="github" scheme="https://fetyloi.netlify.app/tags/github/"/>
+    
+    <category term="漏洞" scheme="https://fetyloi.netlify.app/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+    <category term="LLM" scheme="https://fetyloi.netlify.app/tags/LLM/"/>
+    
+    <category term="大模型" scheme="https://fetyloi.netlify.app/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="网络安全" scheme="https://fetyloi.netlify.app/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文阅读：两篇关于LLM Agents利用漏洞的能力研究论文</title>
+    <link href="https://fetyloi.netlify.app/2025/03/22/post3/"/>
+    <id>https://fetyloi.netlify.app/2025/03/22/post3/</id>
+    <published>2025-03-22T05:40:53.000Z</published>
+    <updated>2025-03-25T07:40:18.976Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、LLM-Agents-can-Autonomously-Hack-Websites&quot;&gt;&lt;a href=&quot;#一、LLM-Agents-can-Autonomously-Hack-Websites&quot; class=&quot;headerlink&quot; title=&quot;一、LLM</summary>
+        
+      
+    
+    
+    
+    <category term="论文阅读" scheme="https://fetyloi.netlify.app/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+    <category term="Agent" scheme="https://fetyloi.netlify.app/tags/Agent/"/>
+    
+    <category term="漏洞" scheme="https://fetyloi.netlify.app/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+    <category term="LLM" scheme="https://fetyloi.netlify.app/tags/LLM/"/>
+    
+    <category term="大模型" scheme="https://fetyloi.netlify.app/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="网络安全" scheme="https://fetyloi.netlify.app/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fetyloi&#39;s 《神经网络与深度学习》 学习笔记</title>
+    <link href="https://fetyloi.netlify.app/2025/03/21/post2/"/>
+    <id>https://fetyloi.netlify.app/2025/03/21/post2/</id>
+    <published>2025-03-21T10:18:44.000Z</published>
+    <updated>2025-03-24T07:18:14.317Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;font color=&quot;blue&quot;&gt;&lt;strong&gt;附上我的语雀文档链接吧，导出的.md文件貌似不太好使：&lt;/strong&gt;&lt;/font&gt;&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://fetyloi.netlify.app/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="神经网络" scheme="https://fetyloi.netlify.app/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="深度学习" scheme="https://fetyloi.netlify.app/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="机器学习" scheme="https://fetyloi.netlify.app/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="蒲公英书" scheme="https://fetyloi.netlify.app/tags/%E8%92%B2%E5%85%AC%E8%8B%B1%E4%B9%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>First Blog--发现了一个很好的字幕生成翻译开源项目</title>
+    <link href="https://fetyloi.netlify.app/2025/03/20/post1/"/>
+    <id>https://fetyloi.netlify.app/2025/03/20/post1/</id>
+    <published>2025-03-20T06:55:43.000Z</published>
+    <updated>2025-03-21T14:40:13.195Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;卡卡字幕助手——VideoCaptioner&quot;&gt;&lt;a href=&quot;#卡卡字幕助手——VideoCaptioner&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="生产力工具" scheme="https://fetyloi.netlify.app/categories/%E7%94%9F%E4%BA%A7%E5%8A%9B%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="工具" scheme="https://fetyloi.netlify.app/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+    <category term="github" scheme="https://fetyloi.netlify.app/tags/github/"/>
+    
+  </entry>
+  
+</feed>
