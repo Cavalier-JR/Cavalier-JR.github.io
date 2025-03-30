@@ -6,7 +6,7 @@
   <link href="https://fetyloi.netlify.app/atom.xml" rel="self"/>
   
   <link href="https://fetyloi.netlify.app/"/>
-  <updated>2025-03-29T09:43:06.349Z</updated>
+  <updated>2025-03-30T06:28:56.235Z</updated>
   <id>https://fetyloi.netlify.app/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决hexo d上传失败（Spawn failed）问题</title>
+    <link href="https://fetyloi.netlify.app/2025/03/30/post6/"/>
+    <id>https://fetyloi.netlify.app/2025/03/30/post6/</id>
+    <published>2025-03-30T06:25:31.000Z</published>
+    <updated>2025-03-30T06:28:56.235Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前情提要&quot;&gt;&lt;a href=&quot;#前情提要&quot; class=&quot;headerlink&quot; title=&quot;前情提要&quot;&gt;&lt;/a&gt;前情提要&lt;/h1&gt;&lt;p&gt;想上传博客，但是发现执行 &lt;code&gt;hexo d&lt;/code&gt; 出现如下报错：&lt;/p&gt;
+&lt;pre</summary>
+        
+      
+    
+    
+    
+    <category term="报错处理" scheme="https://fetyloi.netlify.app/categories/%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/"/>
+    
+    
+    <category term="github" scheme="https://fetyloi.netlify.app/tags/github/"/>
+    
+    <category term="hexo" scheme="https://fetyloi.netlify.app/tags/hexo/"/>
+    
+    <category term="报错处理" scheme="https://fetyloi.netlify.app/tags/%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/"/>
+    
+    <category term="网络问题" scheme="https://fetyloi.netlify.app/tags/%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>Datacon2024漏洞分析赛道作品Vuln_wp漏洞挖掘源码分析</title>
