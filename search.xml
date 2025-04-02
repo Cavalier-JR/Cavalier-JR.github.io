@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Joplin存储路径问题</title>
+      <link href="/2025/04/02/post7/"/>
+      <url>/2025/04/02/post7/</url>
+      
+        <content type="html"><![CDATA[<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>  不用Desktop版本，转去用Portable版本就行了。<br>  Portable版本下载链接：<a href="https://objects.joplinusercontent.com/v3.2.13/JoplinPortable.exe?source=JoplinWebsite&amp;type=New">Joplin Protable</a><br>  记得把Desktop卸载干净。</p><h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><p>  Portable版本比Desktop版本启动要慢一些，不过终于是可以自定义位置，适合我这种C盘爆满用户。其实感觉启动速度也没差多少。<br>  网上的方案一般是在 <code>快捷方式&gt;属性&gt;目标</code> 添加 <code>--profile+新路径</code>。反正我这么做了之后出现了Bug，而且看很多人说重启后又回去了。<br>  找了官方文档，开发者就是建议用Portable或者用mklink去链接，我感觉还是Portable比较适合。<br><img src="/../images/26.png" alt="Portable Version" title="Portable Version"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具设置 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> github </tag>
+            
+            <tag> Joplin </tag>
+            
+            <tag> 自定义设置 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>解决hexo d上传失败（Spawn failed）问题</title>
       <link href="/2025/03/30/post6/"/>
       <url>/2025/03/30/post6/</url>
@@ -174,7 +205,7 @@
       
       <categories>
           
-          <category> 生产力工具 </category>
+          <category> 工具设置 </category>
           
       </categories>
       
