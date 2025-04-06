@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>CodeQL生成数据库报错Spawned process exited abnormally处理</title>
+      <link href="/2025/04/06/post8/"/>
+      <url>/2025/04/06/post8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><p>解决的是参考这篇教程学习CodeQL时遇到的问题：<a href="https://www.freebuf.com/articles/web/283795.html">CodeQL从入门到放弃</a></p><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>原命令</p><pre class="line-numbers language-none"><code class="language-none">database create ~/CodeQL/databases/micro-service-seclab-database  --language="java"  --command="mvn clean install --file pom.xml" --source-root=~/CodeQL/micro-service-seclab/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>改为</p><pre class="line-numbers language-none"><code class="language-none">database create ~/CodeQL/databases/micro-service-seclab-database  --language="java"  --command="mvn clean install -DskipTests --file pom.xml" --source-root=~/CodeQL/micro-service-seclab/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>也就是在 <code>mvn clean install</code> 后加上 <code>-DskipTests</code> 跳过项目单元测试。</p><h1 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h1><h2 id="核心报错："><a href="#核心报错：" class="headerlink" title="核心报错："></a>核心报错：</h2><pre class="line-numbers language-none"><code class="language-none">Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>说明 SpringBoot 在加载应用上下文时尝试连接数据库，但找不到 <code>hibernate.dialect</code>，也无法从数据库连接中自动推断，因此失败。</p><h2 id="解决逻辑"><a href="#解决逻辑" class="headerlink" title="解决逻辑"></a>解决逻辑</h2><p>CodeQL 构建数据库的本质是追踪项目的编译过程，因此不需要运行测试。只要项目代码能成功编译，CodeQL 就能生成数据库。所以直接跳过。</p><h1 id="其他注意点"><a href="#其他注意点" class="headerlink" title="其他注意点"></a>其他注意点</h1><p>还是应该尊重教程的环境（JDK版本和Maven版本）</p><ul><li>JDK版本切换建议阅读这篇教程：<a href="https://blog.csdn.net/qq_40543170/article/details/88391838">三个步骤教会你自由切换JDK版本，超级简单！</a></li><li>JDK 1.8下载在这篇教程找链接：<a href="https://blog.csdn.net/JasonXu94/article/details/143726390">Java8（JDK1.8）最新下载安装教程</a></li><li>Maven 3.6.3下载在这篇教程找链接：<a href="https://blog.csdn.net/qq_46554590/article/details/119428896">maven3.6.3下载与安装。</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 报错处理 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络安全 </tag>
+            
+            <tag> 报错处理 </tag>
+            
+            <tag> CodeQL </tag>
+            
+            <tag> 代码审计 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Joplin存储路径问题</title>
       <link href="/2025/04/02/post7/"/>
       <url>/2025/04/02/post7/</url>
