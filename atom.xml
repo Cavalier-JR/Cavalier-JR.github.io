@@ -6,7 +6,7 @@
   <link href="https://fetyloi.netlify.app/atom.xml" rel="self"/>
   
   <link href="https://fetyloi.netlify.app/"/>
-  <updated>2025-04-06T12:38:23.409Z</updated>
+  <updated>2025-04-06T14:51:26.622Z</updated>
   <id>https://fetyloi.netlify.app/</id>
   
   <author>
@@ -15,6 +15,57 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>持续分享我爱的音乐</title>
+    <link href="https://fetyloi.netlify.app/2025/04/06/post9/"/>
+    <id>https://fetyloi.netlify.app/2025/04/06/post9/</id>
+    <published>2025-04-06T14:45:45.000Z</published>
+    <updated>2025-04-06T14:51:26.622Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://music.163.com/#/song?id=2636170762&quot;&gt;安静 - misa&lt;/a&gt; 后来我发现我最爱的国内90s’rnb歌手中，最喜欢的音色是misa嘟&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="音乐" scheme="https://fetyloi.netlify.app/categories/%E9%9F%B3%E4%B9%90/"/>
+    
+    
+    <category term="音乐" scheme="https://fetyloi.netlify.app/tags/%E9%9F%B3%E4%B9%90/"/>
+    
+    <category term="sexnb" scheme="https://fetyloi.netlify.app/tags/sexnb/"/>
+    
+    <category term="pluggnb" scheme="https://fetyloi.netlify.app/tags/pluggnb/"/>
+    
+    <category term="90&#39;s rnb" scheme="https://fetyloi.netlify.app/tags/90-s-rnb/"/>
+    
+    <category term="hiphop" scheme="https://fetyloi.netlify.app/tags/hiphop/"/>
+    
+    <category term="hyperpop" scheme="https://fetyloi.netlify.app/tags/hyperpop/"/>
+    
+    <category term="trap" scheme="https://fetyloi.netlify.app/tags/trap/"/>
+    
+    <category term="memphis" scheme="https://fetyloi.netlify.app/tags/memphis/"/>
+    
+    <category term="jerk" scheme="https://fetyloi.netlify.app/tags/jerk/"/>
+    
+    <category term="phonk" scheme="https://fetyloi.netlify.app/tags/phonk/"/>
+    
+    <category term="newjazz" scheme="https://fetyloi.netlify.app/tags/newjazz/"/>
+    
+    <category term="rage" scheme="https://fetyloi.netlify.app/tags/rage/"/>
+    
+    <category term="rap" scheme="https://fetyloi.netlify.app/tags/rap/"/>
+    
+  </entry>
   
   <entry>
     <title>CodeQL生成数据库报错Spawned process exited abnormally处理</title>
