@@ -6,7 +6,7 @@
   <link href="https://fetyloi.netlify.app/atom.xml" rel="self"/>
   
   <link href="https://fetyloi.netlify.app/"/>
-  <updated>2025-04-08T11:50:13.389Z</updated>
+  <updated>2025-04-13T06:55:44.976Z</updated>
   <id>https://fetyloi.netlify.app/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Faster R-CNN 源码与流程分析（ResNet50为例）</title>
+    <link href="https://fetyloi.netlify.app/2025/04/13/post10/"/>
+    <id>https://fetyloi.netlify.app/2025/04/13/post10/</id>
+    <published>2025-04-13T06:06:09.000Z</published>
+    <updated>2025-04-13T06:55:44.976Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这篇分析贴由于精力有限，没有涉及到utils包下的自定义的模块，主要对主文件夹和net文件夹下的文件进行解析，大致能顺下来训练和预测的整体流程。&lt;br&gt;目录结构：&lt;br&gt;&lt;img src=&quot;/../images/post10_images/0.png&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://fetyloi.netlify.app/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="深度学习" scheme="https://fetyloi.netlify.app/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="计算机视觉" scheme="https://fetyloi.netlify.app/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="人工智能" scheme="https://fetyloi.netlify.app/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    <category term="卷积神经网络" scheme="https://fetyloi.netlify.app/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="目标检测" scheme="https://fetyloi.netlify.app/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
+    
+    <category term="源码分析" scheme="https://fetyloi.netlify.app/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
   
   <entry>
     <title>持续分享我爱的音乐</title>
