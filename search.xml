@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>下载工具NDM与cvefixes数据集的获取建议</title>
+      <link href="/2025/04/15/post11/"/>
+      <url>/2025/04/15/post11/</url>
+      
+        <content type="html"><![CDATA[<p>起因是今天完善竞赛作品想整多语言的漏洞数据集，恰好找到了这个：<a href="https://github.com/secureIT-project/CVEfixes">cvefixes</a><br>感觉应该还可以，打算先试试手，但是11个G，下的也太慢了。<br>然后就想起来之前我看见过NDM这个下载软件，当时记得性能不错，今天一用，果真快了不少。</p><h1 id="NDM"><a href="#NDM" class="headerlink" title="NDM"></a>NDM</h1><h2 id="下载连接"><a href="#下载连接" class="headerlink" title="下载连接"></a>下载连接</h2><p><a href="https://neatdownload.com/">NDM下载链接</a></p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>因为我是下外面的东西，所以得科学上网，正好NDM有给配置代理的地方。<br>在 <code>Settings --&gt; Proxy/Socks</code> 中设置一下就好，clash的端口号自己去clash看一下<br><img src="/../images/30.png" alt="配置代理" title="配置代理"></p><h1 id="cvefixes"><a href="#cvefixes" class="headerlink" title="cvefixes"></a>cvefixes</h1><p>用不了，用不了，一般电脑用不了。实际的sql文件就有46G了，当我运行sqlite3指令的时候根本无法创建数据库，一开始以为问题出在我的运行环境上，在gitbash和conda里都试了，甚至弄了个脚本，最终发现问题就出现在内存上，每次都终止了然后输出一大串乱码。<br>哎，+我的小破电脑内存完全不够，咱还是不遭这个罪了，我去找别的数据集了QaQ…</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具设置 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> github </tag>
+            
+            <tag> 下载 </tag>
+            
+            <tag> 漏洞数据集 </tag>
+            
+            <tag> 数据集 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Faster R-CNN 源码与流程分析（ResNet50为例）</title>
       <link href="/2025/04/13/post10/"/>
       <url>/2025/04/13/post10/</url>
