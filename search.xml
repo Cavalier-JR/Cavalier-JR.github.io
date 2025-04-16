@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>C盘容量可视化与C盘清理</title>
+      <link href="/2025/04/16/post12/"/>
+      <url>/2025/04/16/post12/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>声明：本博客不为任何读者错误迁移C盘文件导致的系统崩溃负责，自己搞坏了别说我<br>如果下载连接进不去记得科学上网</p></blockquote><h1 id="1-C盘容量可视化软件WizTree"><a href="#1-C盘容量可视化软件WizTree" class="headerlink" title="1. C盘容量可视化软件WizTree"></a>1. C盘容量可视化软件WizTree</h1><p><a href="https://diskanalyzer.com/download">点击下载WizTree</a><br>这个主要是能看一下C盘的占用结构，如图所示哈：<br><img src="/../images/31.png" alt="WizTree" title="WizTree"><br>当然类似的软件也不少，比如windirstat，SpaceSniffer，因为都差不多所以就不多说了。<br>对于这种软件，每次启动都得给管理员权限。WizTree如果你忘记用管理员权限打开了，界面左上角会有按钮的，按一下就以管理员模式重启了。</p><h1 id="2-C盘文件迁移软件FreeMove"><a href="#2-C盘文件迁移软件FreeMove" class="headerlink" title="2. C盘文件迁移软件FreeMove"></a>2. C盘文件迁移软件FreeMove</h1><p><a href="https://github.com/imDema/FreeMove/releases/tag/2.1.0">点击下载FreeMove</a><br>下载FreeMove.exe就可以啦。<br>选择路径，直接迁移。<br><img src="/../images/32.png" alt="FreeMove" title="FreeMove"></p><blockquote><p>这么做的原理：<br>①符号链接技术（Symbolic Links）<br>FreeMove通过将文件或文件夹物理移动到新位置后，在原路径创建一个系统级符号链接（类似于智能快捷方式），将所有对旧路径的访问请求自动重定向到新位置。<br>例如：将 C:\Program Files\App 迁移到 D:\App 后，原路径会生成一个符号链接，系统仍会认为程序位于C盘，但实际文件已转移至D盘。<br>②无需修改注册表<br>传统手动迁移可能导致注册表路径错误，但FreeMove的符号链接机制绕过了直接修改注册表的需求。系统仍通过原路径访问文件，而符号链接已在底层完成路径转换。<br>保持文件结构完整性<br>③迁移过程中，FreeMove会完整保留文件夹层级和文件关联性，确保程序依赖的配置文件、动态链接库（DLL）等仍能正确调用。</p></blockquote><h1 id="3-什么不能迁移"><a href="#3-什么不能迁移" class="headerlink" title="3. 什么不能迁移"></a>3. 什么不能迁移</h1><h2 id="作者提示的"><a href="#作者提示的" class="headerlink" title="作者提示的"></a>作者提示的</h2><ul><li>C:\Users</li><li>C:\用户</li><li>C:\Documents and Settings</li><li>C:\Program Files</li><li>C:\Program Files (x86)<br>（是说根目录不可以迁移，而不是说这些目录下的子目录。）<br>（例如C:\Program Files\xxxxxxx，xxxxxxx就可以迁移）</li></ul><h2 id="个人认为也不能迁移的"><a href="#个人认为也不能迁移的" class="headerlink" title="个人认为也不能迁移的"></a>个人认为也不能迁移的</h2><ul><li>C:\WINDOWS</li><li>C:\windows</li><li>C:\ProgramData<br>……<br>（反正我感觉这些根目录都不适合迁移，也不敢以身犯险哈）</li></ul><h2 id="其他你拿不准的"><a href="#其他你拿不准的" class="headerlink" title="其他你拿不准的"></a>其他你拿不准的</h2><p>有很多文件挺大的但是不知道干啥用的，可以先搜搜，再迁移</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工具设置 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+            <tag> github </tag>
+            
+            <tag> 磁盘处理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>下载工具NDM与cvefixes数据集的获取建议</title>
       <link href="/2025/04/15/post11/"/>
       <url>/2025/04/15/post11/</url>
