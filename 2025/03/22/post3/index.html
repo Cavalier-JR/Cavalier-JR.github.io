@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
     <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
-<meta name="generator" content="Hexo 7.3.0">
+<meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.16.7/katex.min.css" rel="stylesheet" />
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Fetyloi's Blog" type="application/atom+xml">
 </head>
@@ -603,55 +603,95 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、LLM-Agents-can-Autonomously-Hack-Websites"><a href="#一、LLM-Agents-can-Autonomously-Hack-Websites" class="headerlink" title="一、LLM Agents can Autonomously Hack Websites"></a>一、LLM Agents can Autonomously Hack Websites</h1><blockquote>
-<p>发表：arXiv:2402.06664v3 [cs.CR] 16 Feb 2024</p>
+                <h1>一、LLM Agents can Autonomously Hack Websites</h1>
+<blockquote>
+<p>发表：arXiv:2402.06664v3 [<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>] 16 Feb 2024</p>
 </blockquote>
-<h2 id="1-先看动机和结论"><a href="#1-先看动机和结论" class="headerlink" title="1. 先看动机和结论"></a>1. 先看动机和结论</h2><h3 id="①-动机"><a href="#①-动机" class="headerlink" title="① 动机"></a>① 动机</h3><p>如title，研究模型构建的agent能不能自动攻击网站</p>
-<h3 id="②-结论"><a href="#②-结论" class="headerlink" title="② 结论"></a>② 结论</h3><ul>
+<h2 id="1-先看动机和结论">1. 先看动机和结论</h2>
+<h3 id="①-动机">① 动机</h3>
+<p>如title，研究模型构建的agent能不能自动攻击网站</p>
+<h3 id="②-结论">② 结论</h3>
+<ul>
 <li>GPT-4 能够在事先不了解特定漏洞的情况下进行攻击（直接告诉模型给我攻击网站就完事了）</li>
 <li>消融实验表明，对于agent来说，文档读取【document reading】、详细系统指令【,detailed system instructions】这两个Tool是至关重要的</li>
 </ul>
-<h2 id="2-数据集与评估指标、模型"><a href="#2-数据集与评估指标、模型" class="headerlink" title="2. 数据集与评估指标、模型"></a>2. 数据集与评估指标、模型</h2><h3 id="①-数据集、评估指标"><a href="#①-数据集、评估指标" class="headerlink" title="① 数据集、评估指标"></a>① 数据集、评估指标</h3><p>共15个漏洞组成用于测试的数据集：<br><img src="/../images/15.png"><br><strong>评估指标：</strong> 为每个漏洞指定了目标，按agent在10分钟内是否实现来定义成功/失败<br><strong>测试次数：</strong> 每个漏洞5次实验，成功一次就ok </p>
-<h3 id="②-构建Agent的模型"><a href="#②-构建Agent的模型" class="headerlink" title="② 构建Agent的模型"></a>② 构建Agent的模型</h3><p><img src="/../images/16.png"><br>这个表顺便显示了一下成功率，GPT-4失败的四个漏洞是：<br>权限绕过、Javascript 攻击、困难 SQL 注入 和 XSS + CSRF</p>
-<h2 id="3-一些很有趣的论点"><a href="#3-一些很有趣的论点" class="headerlink" title="3. 一些很有趣的论点"></a>3. 一些很有趣的论点</h2><h3 id="①-探究智能体在网安领域的能力【GPT-4】"><a href="#①-探究智能体在网安领域的能力【GPT-4】" class="headerlink" title="① 探究智能体在网安领域的能力【GPT-4】"></a>① 探究智能体在网安领域的能力【GPT-4】</h3><p>例如对困难的SQL注入，智能体能够成功地做到：</p>
+<h2 id="2-数据集与评估指标-模型">2. 数据集与评估指标、模型</h2>
+<h3 id="①-数据集-评估指标">① 数据集、评估指标</h3>
+<p>共15个漏洞组成用于测试的数据集：<br>
+<img src="/../images/15.png" alt><br>
+<strong>评估指标：</strong> 为每个漏洞指定了目标，按agent在10分钟内是否实现来定义成功/失败<br>
+<strong>测试次数：</strong> 每个漏洞5次实验，成功一次就ok</p>
+<h3 id="②-构建agent的模型">② 构建Agent的模型</h3>
+<p><img src="/../images/16.png" alt><br>
+这个表顺便显示了一下成功率，GPT-4失败的四个漏洞是：<br>
+权限绕过、Javascript 攻击、困难 SQL 注入 和 XSS + CSRF</p>
+<h2 id="3-一些很有趣的论点">3. 一些很有趣的论点</h2>
+<h3 id="①-探究智能体在网安领域的能力-gpt-4">① 探究智能体在网安领域的能力【GPT-4】</h3>
+<p>例如对困难的SQL注入，智能体能够成功地做到：</p>
 <ul>
 <li>在页面之间导航，以确定攻击哪个页面。</li>
 <li>尝试默认的用户名和密码（例如，admin）。</li>
 <li>确定默认尝试失败，并尝试经典的 SQL 注入（例如，附加 OR 1 = 1）。</li>
 <li>读取源代码，以确定 SQL 查询中有一个 GET 参数。</li>
 <li>确定该网站易受 SQL 联合攻击。</li>
-<li>执行 SQL 联合攻击。<br>例如对服务器端模板注入（SSTI）攻击，智能体能够成功地做到：</li>
+<li>执行 SQL 联合攻击。<br>
+例如对服务器端模板注入（SSTI）攻击，智能体能够成功地做到：</li>
 <li>确定一个网站是否容易受到 SSTI 攻击。</li>
 <li>使用一个小的测试脚本测试 SSTI 攻击。</li>
 <li>确定要窃取的文件的位置。</li>
 <li>执行完整的 SSTI 攻击。</li>
 </ul>
-<h3 id="②-评估指标有”成本”"><a href="#②-评估指标有”成本”" class="headerlink" title="② 评估指标有”成本”"></a>② 评估指标有”成本”</h3><p>如果要从公司应用开发角度来看，成本这个指标确实很重要，在学术论文里感觉大多评估指标还是经典四件套：accuracy/precision/recall/f1-score，或者构建其他科学性指标评估检测效果，而不是关注成本。但是做竞赛作品的话，注意这个点应该还挺好的。<br>论文的研究结果是：“每次成功利用漏洞的成本将是 8.80 美元”</p>
-<h1 id="二、LLM-Agents-can-Autonomously-Exploit-One-day-Vulnerabilities"><a href="#二、LLM-Agents-can-Autonomously-Exploit-One-day-Vulnerabilities" class="headerlink" title="二、LLM Agents can Autonomously Exploit One-day Vulnerabilities"></a>二、LLM Agents can Autonomously Exploit One-day Vulnerabilities</h1><blockquote>
-<p>发表：arXiv:2404.08144v2 [cs.CR] 17 Apr 2024</p>
+<h3 id="②-评估指标有-成本">② 评估指标有"成本"</h3>
+<p>如果要从公司应用开发角度来看，成本这个指标确实很重要，在学术论文里感觉大多评估指标还是经典四件套：accuracy/precision/recall/f1-score，或者构建其他科学性指标评估检测效果，而不是关注成本。但是做竞赛作品的话，注意这个点应该还挺好的。<br>
+论文的研究结果是：“每次成功利用漏洞的成本将是 8.80 美元”</p>
+<h1>二、LLM Agents can Autonomously Exploit One-day Vulnerabilities</h1>
+<blockquote>
+<p>发表：arXiv:2404.08144v2 [<a target="_blank" rel="noopener" href="http://cs.CR">cs.CR</a>] 17 Apr 2024</p>
 </blockquote>
-<h2 id="1-先看动机和结论-1"><a href="#1-先看动机和结论-1" class="headerlink" title="1. 先看动机和结论"></a>1. 先看动机和结论</h2><h3 id="①-动机-1"><a href="#①-动机-1" class="headerlink" title="① 动机"></a>① 动机</h3><p>如title，研究模型构建的agent利用漏洞信息的能力</p>
-<h3 id="②-结论-1"><a href="#②-结论-1" class="headerlink" title="② 结论"></a>② 结论</h3><ul>
+<h2 id="1-先看动机和结论">1. 先看动机和结论</h2>
+<h3 id="①-动机">① 动机</h3>
+<p>如title，研究模型构建的agent利用漏洞信息的能力</p>
+<h3 id="②-结论">② 结论</h3>
+<ul>
 <li>GPT-3.5/其他大模型/开源漏洞扫描器 Agent —— 0%</li>
 <li>GPT-4 Agent —— 7%</li>
 <li>GPT-4 Agent <strong>+ CVE描述</strong> —— 86.7%</li>
 </ul>
 <p>所以CVE描述很重要，如果没有CVE描述，很可能在布局中找不到触发点或者超过工具相应大小限制，以及可能列出所有可能的攻击方式并只尝试其中一种就下班了</p>
-<h2 id="2-数据集、模型、扫描器"><a href="#2-数据集、模型、扫描器" class="headerlink" title="2. 数据集、模型、扫描器"></a>2. 数据集、模型、扫描器</h2><h3 id="①-数据集"><a href="#①-数据集" class="headerlink" title="① 数据集"></a>① 数据集</h3><p>共15个漏洞组成用于测试的数据集：<br>人工挑选了14个现实世界<strong>one-day漏洞</strong>（都是开源软件的可重现CVE） + “ACIDRain”漏洞<br><img src="/../images/12.png"></p>
-<p><img src="/../images/13.png"></p>
-<h3 id="②-构建Agent的模型-1"><a href="#②-构建Agent的模型-1" class="headerlink" title="② 构建Agent的模型"></a>② 构建Agent的模型</h3><p><img src="/../images/14.png"><br>都用的api而不是本地部署，所以要衡量成本<br>这个表顺便显示了一下成功率，GPT-4失败的两个漏洞是：</p>
+<h2 id="2-数据集-模型-扫描器">2. 数据集、模型、扫描器</h2>
+<h3 id="①-数据集">① 数据集</h3>
+<p>共15个漏洞组成用于测试的数据集：<br>
+人工挑选了14个现实世界<strong>one-day漏洞</strong>（都是开源软件的可重现CVE） + "ACIDRain"漏洞<br>
+<img src="/../images/12.png" alt></p>
+<p><img src="/../images/13.png" alt></p>
+<h3 id="②-构建agent的模型">② 构建Agent的模型</h3>
+<p><img src="/../images/14.png" alt><br>
+都用的api而不是本地部署，所以要衡量成本<br>
+这个表顺便显示了一下成功率，GPT-4失败的两个漏洞是：</p>
 <ul>
 <li>Iris 跨站脚本漏洞（XSS）</li>
 <li>Hertzbeat 远程代码执行漏洞（RCE）</li>
 </ul>
-<h3 id="③-开源漏洞扫描器"><a href="#③-开源漏洞扫描器" class="headerlink" title="③ 开源漏洞扫描器"></a>③ 开源漏洞扫描器</h3><p>ZAP和Metasploit<br>效果上就是啥也没检测出来</p>
-<h2 id="3-一些很有趣的论点-1"><a href="#3-一些很有趣的论点-1" class="headerlink" title="3. 一些很有趣的论点"></a>3. 一些很有趣的论点</h2><h3 id="①-已经有构建Agent来打CTF的尝试了"><a href="#①-已经有构建Agent来打CTF的尝试了" class="headerlink" title="① 已经有构建Agent来打CTF的尝试了"></a>① 已经有构建Agent来打CTF的尝试了</h3><p>Llm agents can autonomously hack websites, 2024. —Richard Fang, Rohan Bindu, Akul Gupta, Qiusi Zhan, and Daniel Kang. </p>
-<h3 id="②-评估指标有”成本”-1"><a href="#②-评估指标有”成本”-1" class="headerlink" title="② 评估指标有”成本”"></a>② 评估指标有”成本”</h3><p>如果要从公司应用开发角度来看，成本这个指标确实很重要，在学术论文里感觉大多评估指标还是经典四件套：accuracy/precision/recall/f1-score，或者构建其他科学性指标评估检测效果，而不是关注成本。但是做竞赛作品的话，注意这个点应该还挺好的。<br>论文的研究结果是：“每次成功利用漏洞的成本将是 8.80 美元”</p>
-<h1 id="三、结语"><a href="#三、结语" class="headerlink" title="三、结语"></a>三、结语</h1><h2 id="1-关于开源模型"><a href="#1-关于开源模型" class="headerlink" title="1. 关于开源模型"></a>1. 关于开源模型</h2><p>这两篇论文所示的结果都是GPT-4和GPT-3.5这种闭源模型有效果，而Llama这种开源模型效果不佳，因为工具的调用失败。如果后续研究想要探究开源模型的对应效果，应该着重看一下对工具的调用上是否可以改进。<br>同时，DeepSeek热潮虽然让我们很想利用DeepSeek-R1或DeepSeek-V3进行研究，但是DeepSeek系列模型当前没有调用工具的能力，从而无法构建智能体。</p>
-<h2 id="2-关于这两篇论文"><a href="#2-关于这两篇论文" class="headerlink" title="2. 关于这两篇论文"></a>2. 关于这两篇论文</h2><blockquote>
-<p>The most related work to ours is a recent study that showed that LLM agents can hack websites (Fang et al., 2024). This work focused on simple vulnerabilities in capture-the-flag style environments that are not reflective of real-world systems.<br>与我们的研究最为相关的是最近的一项研究，该研究表明大语言模型智能体能够攻击网站（方等人，2024）。这项工作聚焦于 “夺旗” 式环境中的简单漏洞，而这些漏洞并不能反映现实世界中的系统情况。</p>
+<h3 id="③-开源漏洞扫描器">③ 开源漏洞扫描器</h3>
+<p>ZAP和Metasploit<br>
+效果上就是啥也没检测出来</p>
+<h2 id="3-一些很有趣的论点">3. 一些很有趣的论点</h2>
+<h3 id="①-已经有构建agent来打ctf的尝试了">① 已经有构建Agent来打CTF的尝试了</h3>
+<p>Llm agents can autonomously hack websites, 2024. —Richard Fang, Rohan Bindu, Akul Gupta, Qiusi Zhan, and Daniel Kang.</p>
+<h3 id="②-评估指标有-成本">② 评估指标有"成本"</h3>
+<p>如果要从公司应用开发角度来看，成本这个指标确实很重要，在学术论文里感觉大多评估指标还是经典四件套：accuracy/precision/recall/f1-score，或者构建其他科学性指标评估检测效果，而不是关注成本。但是做竞赛作品的话，注意这个点应该还挺好的。<br>
+论文的研究结果是：“每次成功利用漏洞的成本将是 8.80 美元”</p>
+<h1>三、结语</h1>
+<h2 id="1-关于开源模型">1. 关于开源模型</h2>
+<p>这两篇论文所示的结果都是GPT-4和GPT-3.5这种闭源模型有效果，而Llama这种开源模型效果不佳，因为工具的调用失败。如果后续研究想要探究开源模型的对应效果，应该着重看一下对工具的调用上是否可以改进。<br>
+同时，DeepSeek热潮虽然让我们很想利用DeepSeek-R1或DeepSeek-V3进行研究，但是DeepSeek系列模型当前没有调用工具的能力，从而无法构建智能体。</p>
+<h2 id="2-关于这两篇论文">2. 关于这两篇论文</h2>
+<blockquote>
+<p>The most related work to ours is a recent study that showed that LLM agents can hack websites (Fang et al., 2024). This work focused on simple vulnerabilities in capture-the-flag style environments that are not reflective of real-world systems.<br>
+与我们的研究最为相关的是最近的一项研究，该研究表明大语言模型智能体能够攻击网站（方等人，2024）。这项工作聚焦于 “夺旗” 式环境中的简单漏洞，而这些漏洞并不能反映现实世界中的系统情况。</p>
 </blockquote>
-<p>也就是说第二篇论文是第一篇在真实世界漏洞上的进一步研究<br>这两篇论文属于同一个团队</p>
+<p>也就是说第二篇论文是第一篇在真实世界漏洞上的进一步研究<br>
+这两篇论文属于同一个团队</p>
 
                 
             </div>
@@ -895,12 +935,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
-                        <span class="chip bg-color">神经网络</span>
-                    </a>
-                    
                     <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
                         <span class="chip bg-color">深度学习</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">神经网络</span>
                     </a>
                     
                     <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
@@ -1149,7 +1189,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">48.8k</span>&nbsp;字
+                class="white-color">50.3k</span>&nbsp;字
             
             
             
@@ -1409,37 +1449,32 @@ $(function () {
     
 
 
-    <!-- 白天和黑夜主题 -->
-<!-- <div class="sum-moon-box">
-    <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
-      <i id="sum-moon-icon" class="fas fa-moon" style="width:48px; height:48px; font-size: 28px;"></i>
-    </a>
-  </div> -->
-  
-  <script>
-    function switchNightMode() {
-      $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
-        setTimeout(function () {
-          $('body').hasClass('DarkMode') 
-          ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
-          : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
-            
-          setTimeout(function () {
-            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
-              $(this).remove()
-            })
-          }, 2e3)
-        })
-    }
-  </script>
+    <!-- 白天和黑夜主题
+<div class="sum-moon-box">
+  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
+    <i id="sum-moon-icon" class="fas fa-sun" style="width:48px; height:48px; font-size: 28px;"></i>
+  </a>
+</div> -->
 
-<div class="stars-con">
-    <div id="stars"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>  
-</div>
+<script>
+  function switchNightMode() {
+    $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+      setTimeout(function () {
+        $('body').hasClass('DarkMode') 
+        ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+        : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+          
+        setTimeout(function () {
+          $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+            $(this).remove()
+          })
+        }, 2e3)
+      })
+  }
+</script>
+
   
-     /* 模式判断 */
+     <!-- /* 模式判断 */
     <script>
         /* 模式判断 */
         if (localStorage.getItem('isDark') === '1') {
@@ -1449,7 +1484,7 @@ $(function () {
             document.body.classList.remove('DarkMode');
             $('#sum-moon-icon').removeleClass("fa-sun").addClass('fa-moon')
         }
-    </script> 
+    </script>  -->
  
    
     <!-- 下面这个是鼠标拖尾，想用的时候取消注释就可以 -->

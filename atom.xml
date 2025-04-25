@@ -6,7 +6,7 @@
   <link href="https://fetyloi.netlify.app/atom.xml" rel="self"/>
   
   <link href="https://fetyloi.netlify.app/"/>
-  <updated>2025-04-25T09:19:43.249Z</updated>
+  <updated>2025-04-25T11:27:09.011Z</updated>
   <id>https://fetyloi.netlify.app/</id>
   
   <author>
@@ -21,14 +21,18 @@
     <link href="https://fetyloi.netlify.app/2025/04/25/post13/"/>
     <id>https://fetyloi.netlify.app/2025/04/25/post13/</id>
     <published>2025-04-25T08:33:38.000Z</published>
-    <updated>2025-04-25T09:19:43.249Z</updated>
+    <updated>2025-04-25T11:27:09.011Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;〇、考点&quot;&gt;&lt;a href=&quot;#〇、考点&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1&gt;〇、考点&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;题目主要集中在分割之前&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1-绪论&quot;&gt;1.</summary>
         
       
     
@@ -37,11 +41,11 @@
     <category term="学习笔记" scheme="https://fetyloi.netlify.app/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="深度学习" scheme="https://fetyloi.netlify.app/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
     <category term="计算机视觉" scheme="https://fetyloi.netlify.app/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
     
     <category term="人工智能" scheme="https://fetyloi.netlify.app/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    <category term="深度学习" scheme="https://fetyloi.netlify.app/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     <category term="卷积神经网络" scheme="https://fetyloi.netlify.app/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
@@ -64,9 +68,11 @@
         
         
     <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;声明：本博客不为任何读者错误迁移C盘文件导致的系统崩溃负责，自己搞坏了别说我&lt;br&gt;如果下载连接进不去记得科学上网&lt;/p&gt;
+&lt;p&gt;声明：本博客不为任何读者错误迁移C盘文件导致的系统崩溃负责，自己搞坏了别说我&lt;br&gt;
+如果下载连接进不去记得科学上网&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1 id=&quot;1-C盘容量可视化软件WizTree&quot;&gt;&lt;a</summary>
+&lt;h1&gt;1. C盘容量可视化软件WizTree&lt;/h1&gt;
+&lt;p&gt;&lt;a</summary>
         
       
     
@@ -128,7 +134,9 @@
       
         
         
-    <summary type="html">&lt;p&gt;这篇分析贴由于精力有限，没有涉及到utils包下的自定义的模块，主要对主文件夹和net文件夹下的文件进行解析，大致能顺下来训练和预测的整体流程。&lt;br&gt;目录结构：&lt;br&gt;&lt;img src=&quot;/../images/post10_images/0.png&quot;</summary>
+    <summary type="html">&lt;p&gt;这篇分析贴由于精力有限，没有涉及到utils包下的自定义的模块，主要对主文件夹和net文件夹下的文件进行解析，大致能顺下来训练和预测的整体流程。&lt;br&gt;
+目录结构：&lt;br&gt;
+&lt;img src=&quot;/../images/post10_images/0.png&quot;</summary>
         
       
     
@@ -137,11 +145,11 @@
     <category term="学习笔记" scheme="https://fetyloi.netlify.app/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="深度学习" scheme="https://fetyloi.netlify.app/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
     <category term="计算机视觉" scheme="https://fetyloi.netlify.app/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
     
     <category term="人工智能" scheme="https://fetyloi.netlify.app/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    <category term="深度学习" scheme="https://fetyloi.netlify.app/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     <category term="卷积神经网络" scheme="https://fetyloi.netlify.app/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
@@ -214,7 +222,8 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot; title=&quot;前提&quot;&gt;&lt;/a&gt;前提&lt;/h1&gt;&lt;p&gt;解决的是参考这篇教程学习CodeQL时遇到的问题：&lt;a</summary>
+    <summary type="html">&lt;h1&gt;前提&lt;/h1&gt;
+&lt;p&gt;解决的是参考这篇教程学习CodeQL时遇到的问题：&lt;a</summary>
         
       
     
@@ -245,7 +254,9 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;解决方案&quot;&gt;&lt;a href=&quot;#解决方案&quot; class=&quot;headerlink&quot; title=&quot;解决方案&quot;&gt;&lt;/a&gt;解决方案&lt;/h1&gt;&lt;p&gt;  不用Desktop版本，转去用Portable版本就行了。&lt;br&gt;  Portable版本下载链接：&lt;a</summary>
+    <summary type="html">&lt;h1&gt;解决方案&lt;/h1&gt;
+&lt;p&gt;  不用Desktop版本，转去用Portable版本就行了。&lt;br&gt;
+  Portable版本下载链接：&lt;a</summary>
         
       
     
@@ -276,8 +287,9 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;前情提要&quot;&gt;&lt;a href=&quot;#前情提要&quot; class=&quot;headerlink&quot; title=&quot;前情提要&quot;&gt;&lt;/a&gt;前情提要&lt;/h1&gt;&lt;p&gt;想上传博客，但是发现执行 &lt;code&gt;hexo d&lt;/code&gt; 出现如下报错：&lt;/p&gt;
-&lt;pre</summary>
+    <summary type="html">&lt;h1&gt;前情提要&lt;/h1&gt;
+&lt;p&gt;想上传博客，但是发现执行 &lt;code&gt;hexo d&lt;/code&gt; 出现如下报错：&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-none&quot;&gt;&lt;code class=&quot;language-none&quot;&gt;FATAL</summary>
         
       
     
@@ -362,7 +374,9 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;一、LLM-Agents-can-Autonomously-Hack-Websites&quot;&gt;&lt;a href=&quot;#一、LLM-Agents-can-Autonomously-Hack-Websites&quot; class=&quot;headerlink&quot; title=&quot;一、LLM</summary>
+    <summary type="html">&lt;h1&gt;一、LLM Agents can Autonomously Hack Websites&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;发表：arXiv:2402.06664v3 [&lt;a href=&quot;http://cs.CR&quot;&gt;cs.CR&lt;/a&gt;] 16 Feb</summary>
         
       
     
@@ -395,7 +409,8 @@
       
         
         
-    <summary type="html">&lt;p&gt;&lt;font color=&quot;blue&quot;&gt;&lt;strong&gt;附上我的语雀文档链接吧，导出的.md文件貌似不太好使：&lt;/strong&gt;&lt;/font&gt;&lt;br&gt;&lt;a</summary>
+    <summary type="html">&lt;p&gt;&lt;font color=&quot;blue&quot;&gt;&lt;strong&gt;附上我的语雀文档链接吧，导出的.md文件貌似不太好使：&lt;/strong&gt;&lt;/font&gt;&lt;br&gt;
+&lt;a</summary>
         
       
     
@@ -404,9 +419,9 @@
     <category term="学习笔记" scheme="https://fetyloi.netlify.app/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="神经网络" scheme="https://fetyloi.netlify.app/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    
     <category term="深度学习" scheme="https://fetyloi.netlify.app/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="神经网络" scheme="https://fetyloi.netlify.app/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
     <category term="机器学习" scheme="https://fetyloi.netlify.app/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
@@ -426,7 +441,9 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;VideoCaptioner&quot;&gt;&lt;a href=&quot;#VideoCaptioner&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1&gt;VideoCaptioner&lt;/h1&gt;
+&lt;p&gt;用处就是给无字幕、无翻译的视频生成带翻译的字幕。但是！！！&lt;br&gt;
+和b站、youtube上的字幕生成翻译不同，这个可以&lt;font</summary>
         
       
     

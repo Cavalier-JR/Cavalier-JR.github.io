@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
     <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
-<meta name="generator" content="Hexo 7.3.0">
+<meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.16.7/katex.min.css" rel="stylesheet" />
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Fetyloi's Blog" type="application/atom+xml">
 </head>
@@ -599,16 +599,22 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><p>解决的是参考这篇教程学习CodeQL时遇到的问题：<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/283795.html">CodeQL从入门到放弃</a></p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>原命令</p>
+                <h1>前提</h1>
+<p>解决的是参考这篇教程学习CodeQL时遇到的问题：<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/283795.html">CodeQL从入门到放弃</a></p>
+<h1>解决方案</h1>
+<p>原命令</p>
 <pre class="line-numbers language-none"><code class="language-none">database create ~/CodeQL/databases/micro-service-seclab-database  --language="java"  --command="mvn clean install --file pom.xml" --source-root=~/CodeQL/micro-service-seclab/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>改为</p>
 <pre class="line-numbers language-none"><code class="language-none">database create ~/CodeQL/databases/micro-service-seclab-database  --language="java"  --command="mvn clean install -DskipTests --file pom.xml" --source-root=~/CodeQL/micro-service-seclab/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>也就是在 <code>mvn clean install</code> 后加上 <code>-DskipTests</code> 跳过项目单元测试。</p>
-<h1 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h1><h2 id="核心报错："><a href="#核心报错：" class="headerlink" title="核心报错："></a>核心报错：</h2><pre class="line-numbers language-none"><code class="language-none">Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1>原理分析</h1>
+<h2 id="核心报错：">核心报错：</h2>
+<pre class="line-numbers language-none"><code class="language-none">Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>说明 SpringBoot 在加载应用上下文时尝试连接数据库，但找不到 <code>hibernate.dialect</code>，也无法从数据库连接中自动推断，因此失败。</p>
-<h2 id="解决逻辑"><a href="#解决逻辑" class="headerlink" title="解决逻辑"></a>解决逻辑</h2><p>CodeQL 构建数据库的本质是追踪项目的编译过程，因此不需要运行测试。只要项目代码能成功编译，CodeQL 就能生成数据库。所以直接跳过。</p>
-<h1 id="其他注意点"><a href="#其他注意点" class="headerlink" title="其他注意点"></a>其他注意点</h1><p>还是应该尊重教程的环境（JDK版本和Maven版本）</p>
+<h2 id="解决逻辑">解决逻辑</h2>
+<p>CodeQL 构建数据库的本质是追踪项目的编译过程，因此不需要运行测试。只要项目代码能成功编译，CodeQL 就能生成数据库。所以直接跳过。</p>
+<h1>其他注意点</h1>
+<p>还是应该尊重教程的环境（JDK版本和Maven版本）</p>
 <ul>
 <li>JDK版本切换建议阅读这篇教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40543170/article/details/88391838">三个步骤教会你自由切换JDK版本，超级简单！</a></li>
 <li>JDK 1.8下载在这篇教程找链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/JasonXu94/article/details/143726390">Java8（JDK1.8）最新下载安装教程</a></li>
@@ -1139,7 +1145,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">48.8k</span>&nbsp;字
+                class="white-color">50.3k</span>&nbsp;字
             
             
             
@@ -1399,37 +1405,32 @@ $(function () {
     
 
 
-    <!-- 白天和黑夜主题 -->
-<!-- <div class="sum-moon-box">
-    <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
-      <i id="sum-moon-icon" class="fas fa-moon" style="width:48px; height:48px; font-size: 28px;"></i>
-    </a>
-  </div> -->
-  
-  <script>
-    function switchNightMode() {
-      $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
-        setTimeout(function () {
-          $('body').hasClass('DarkMode') 
-          ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
-          : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
-            
-          setTimeout(function () {
-            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
-              $(this).remove()
-            })
-          }, 2e3)
-        })
-    }
-  </script>
+    <!-- 白天和黑夜主题
+<div class="sum-moon-box">
+  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
+    <i id="sum-moon-icon" class="fas fa-sun" style="width:48px; height:48px; font-size: 28px;"></i>
+  </a>
+</div> -->
 
-<div class="stars-con">
-    <div id="stars"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>  
-</div>
+<script>
+  function switchNightMode() {
+    $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+      setTimeout(function () {
+        $('body').hasClass('DarkMode') 
+        ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+        : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+          
+        setTimeout(function () {
+          $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+            $(this).remove()
+          })
+        }, 2e3)
+      })
+  }
+</script>
+
   
-     /* 模式判断 */
+     <!-- /* 模式判断 */
     <script>
         /* 模式判断 */
         if (localStorage.getItem('isDark') === '1') {
@@ -1439,7 +1440,7 @@ $(function () {
             document.body.classList.remove('DarkMode');
             $('#sum-moon-icon').removeleClass("fa-sun").addClass('fa-moon')
         }
-    </script> 
+    </script>  -->
  
    
     <!-- 下面这个是鼠标拖尾，想用的时候取消注释就可以 -->

@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
     <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
-<meta name="generator" content="Hexo 7.3.0">
+<meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.16.7/katex.min.css" rel="stylesheet" />
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Fetyloi's Blog" type="application/atom+xml">
 </head>
@@ -518,16 +518,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                                <span class="chip bg-color">深度学习</span>
-                            </a>
-                        
                             <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">
                                 <span class="chip bg-color">计算机视觉</span>
                             </a>
                         
                             <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
                                 <span class="chip bg-color">人工智能</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">深度学习</span>
                             </a>
                         
                             <a href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
@@ -607,48 +607,185 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>这篇分析贴由于精力有限，没有涉及到utils包下的自定义的模块，主要对主文件夹和net文件夹下的文件进行解析，大致能顺下来训练和预测的整体流程。<br>目录结构：<br><img src="/../images/post10_images/0.png" alt="目录结构" title="目录结构"></p>
-<h1 id="（一）train-py"><a href="#（一）train-py" class="headerlink" title="（一）train.py"></a>（一）train.py</h1><blockquote>
-<p>我们的流程肯定是训练模型后利用模型预测，所以train.py就是程序的主入口之一，先训练。<br>待会会将train.py涉及到调用的其他文件的类、函数等逐一插入解释。</p>
+                <p>这篇分析贴由于精力有限，没有涉及到utils包下的自定义的模块，主要对主文件夹和net文件夹下的文件进行解析，大致能顺下来训练和预测的整体流程。<br>
+目录结构：<br>
+<img src="/../images/post10_images/0.png" alt="目录结构" title="目录结构"></p>
+<h1>（一）<a target="_blank" rel="noopener" href="http://train.py">train.py</a></h1>
+<blockquote>
+<p>我们的流程肯定是训练模型后利用模型预测，所以train.py就是程序的主入口之一，先训练。<br>
+待会会将train.py涉及到调用的其他文件的类、函数等逐一插入解释。</p>
 </blockquote>
-<p>先导入了一些包以及我们自定义的类方法，这部分比较详细，直接阅读：<br><img src="/../images/post10_images/1.png" alt="图1" title="图1"><br>设置Cuda、种子（保证结果可重复）、用到的gpu数、是否采取混合精度训练、类别名称文件路径（就是指定有哪些要预测的类别）、预训练权重路径、输入图片大小、主干网络类型、是否使用预训练权重、锚框大小、冻结阶段训练参数、是否进行冻结训练、学习率、优化器等等基本参数。直接看图：<br><img src="/../images/post10_images/2.png" alt="图2" title="图2"><br><img src="/../images/post10_images/3.png" alt="图3" title="图3"><br><img src="/../images/post10_images/4.png" alt="图4" title="图4"><br><img src="/../images/post10_images/5.png" alt="图5" title="图5"><br>上面都是基本的参数设置，下面开始真正有关模型训练的部分。下面这张图，首先创建了一个模型实例，加载好resnet50的权重。<br><img src="/../images/post10_images/6.png" alt="图6" title="图6"><br>而创建模型实例是FasterRCNN类的实例，这个是从net文件夹下的frcnn.py导入的。下面分析net.frcnn.py以及FasterRCNN类的代码。</p>
-<h2 id="1-net-frcnn-py"><a href="#1-net-frcnn-py" class="headerlink" title="1. net.frcnn.py"></a>1. net.frcnn.py</h2><p>结合刚才创建实例的那行代码，可以看到，要初始化一个FasterRCNN网络，需要传入：类别总数、模式、特征步长、锚框尺度、锚框高宽比、骨干网络、预训练标志。其中我们创建实例的时候，没有传入模式、特征步长、锚框高宽比，因此这三个参数将使用默认的参数。<br>由于我们传入的骨干网络是resnet50，会走下图的resnet50的分支，构建RPN网络。<br>我们待会再说RPN网络的问题，先说前向传播函数。在前向传播函数中，利用resnet50提取图像特征（self.extractor就是resnet50的extractor），然后利用上面构建的RPN网络获取建议框，并获取头部网络的分类结果和回归结果。<br><img src="/../images/post10_images/7.png" alt="图7" title="图7"><br>然后说回RPN网络的构建。可以看到调用了<strong>net.resnet50.py的resnet50，net.rpn的RegionProposalNetwork，net.classifier.py的Resnet50RoIHead</strong>，我们逐个研究一下。<br>（在研究之前，把net.frcnn.py的剩余部分展示如图8，由于我们在文件里指定了forward的mode是forward，所以会走完整的流程，图8的分解步骤没有调用到，就不讲解了，有兴趣看图~）<br><img src="/../images/post10_images/8.png" alt="图8" title="图8"></p>
-<h3 id="①-net-resnet50-py"><a href="#①-net-resnet50-py" class="headerlink" title="① net.resnet50.py"></a>① net.resnet50.py</h3><p>下面的图9和图10非常详细地解释了resnet50的网络结构：<br><img src="/../images/post10_images/9.png" alt="图9" title="图9"><br><img src="/../images/post10_images/10.png" alt="图10" title="图10"><br>我们着重看图11，能看到刚才调用的resnet50函数出现在最后几行中。<br>resnet50函数首先实例化了一个模型，这个模型由传入Bottleneck残差块的ResNet类实现。<br>其次，if pretrained分支我们不会进入，因为我们本身就在外部定义过了model_path<br>在我们实例化ResNet类的时侯，其实已经走了forward前向传播，这在下面的图11中可以看到。所以直接用list获取了features和classifier，分别是特征提取部分和分类部分，转换成了Sequential模块并返回了。<br>也就是说，如果我们传入一些参数给resnet50函数，由于上层的ResNet类设置了完整的结构以及前向传播过程，我们就可以得到一个具备功能（还没有输入图像，但一旦给了图像，也就是ResNet类下forward函数中的参数x，那就可以获取结果了）的resnet50模型了。<br><img src="/../images/post10_images/11.png" alt="图11" title="图11"><br>所以我们可以回看一眼下面的图7的一些部分，在左下角，获取的extractor实际上是resnet50函数返回的features，classifer就是resnet50函数返回的classifier；在右侧的forward模式中，第73行，self.extractor.forward(x)就是ResNet类中的forward函数，传入了图像x，提取得到了特征部分。<br>从图7中也可以看到特征部分的应用，就是在下面放到self.rpn.forward和self.head.forward中。<br><img src="/../images/post10_images/7.png" alt="图7" title="图7"></p>
-<h3 id="②-net-rpn-py"><a href="#②-net-rpn-py" class="headerlink" title="② net.rpn.py"></a>② net.rpn.py</h3><p>下面我们分析上面图7右上角的部分。<br>这块有点乱，说到哪个图读者可以用snipaste截图一下钉在桌面上方便看。<br>图12到图14的上半部分定义了一个ProposalCreator类，它是为了生成建议框的。由于它是被下面的主要类RegionProposalNetwork调用实例化的类，我们先看RegionProposalNetwork，也就是图14的下半部分到图16。</p>
-<h4 id="RegionProposalNetwork"><a href="#RegionProposalNetwork" class="headerlink" title="RegionProposalNetwork"></a>RegionProposalNetwork</h4><p>对比图7和图14下半部分，也就是看实例化的时候传入的参数，可以发现，锚框的尺度使用了类定义的默认值，其他都是由我们输入的，没有走默认值。<br>这个RegionProposalNetwork首先就生成基础先验框，调用的generate_anchor_base函数是一个现成的函数。<br>然后定义了几个卷积核，从图中可以看到是准备给不同任务的卷积核。<br>然后重头戏是下面的forward函数。在我们原来的图7中的forward函数，存在self.rpn.forward获得建议框，因此实际功能就在下面的这个forward函数实现了。<br>forward函数把我们的图像x先走了3×3的卷积核，提取特征，然后又分别走了两个1×1的卷积核，分别用于回归任务和分类任务。其中对于分类任务，我们还走了一个softmax，得到分类的分数。<br>到此为止，forward函数在回归任务上获取了一下偏移量，在分类任务上获取了得分，分类任务完事了。<br>接下来，forward函数先调用_enumerate_shifted_anchor生成锚框，这个是一个简单的锚框生成，是现成的函数。然后锚框出来了，接着就是要根据偏移量来接近实例，实现回归的目的。图14的第135行实例化了我们图12到图14定义的类ProposalCreator，所以在这里可以看到用的是proposal_layer这个实例化后的结果。<br>这个proposal_layer就直接生成了建议框，也就是根据偏移量得到的接近实例的锚框。<br>而这个proposal_layer，也就是类ProposalCreator，是如何生成锚框的，下面我们分析一下。<br><img src="/../images/post10_images/14.png" alt="图14" title="图14"><br><img src="/../images/post10_images/15.png" alt="图15" title="图15"><br><img src="/../images/post10_images/16.png" alt="图16" title="图16"></p>
-<h4 id="ProposalCreator"><a href="#ProposalCreator" class="headerlink" title="ProposalCreator"></a>ProposalCreator</h4><p>ProposalCreator也就包含init和call两个部分，call部分是实际实现功能的部分。<br>我们对call部分着重看一下，在图13到图14。<br>简单来说，这里使用了loc2bbox这个现成的函数，把RPN网络预测的偏移量（上面的回归任务的结果）应用到锚框上，得到建议框的坐标。然后这个类还做了非极大值抑制这个环节，通俗点就是保留更好的锚框。其余就是一些异常情况处理等。看图即可。<br><img src="/../images/post10_images/12.png" alt="图12" title="图12"><br><img src="/../images/post10_images/13.png" alt="图13" title="图13"><br><img src="/../images/post10_images/14.png" alt="图14" title="图14"></p>
-<h3 id="③-net-classifier-py"><a href="#③-net-classifier-py" class="headerlink" title="③ net.classifier.py"></a>③ net.classifier.py</h3><p>隔得有点久了，我们回到图7。上面我们解释了利用主干网络提取到特征，然后利用把这个特征传入RPN网络得到建议框。现在还差最后一个部分没有解析，也就是Resnet50RoIHead这个类，这个才会给出最终的分类结果和回归结果。<br><img src="/../images/post10_images/7.png" alt="图7" title="图7"><br>在分析之前，我们得关注一下，其实图7中所示的forward函数是层层递进的，提取特征、获取建议框、同时这建议框的坐标也要传到classifier（从第63行可以看到真正实现功能的部分就是classifier）获取最终的结果。<br><strong>虽然rpn部分也给出了一个建议框，但是需要注意的是它是针对二分类的，即前景和背景的区别，而不是目标检测的多分类的。classifier是在rpn的结果的基础上进一步调整，得到最终的分类</strong><br>下面的图中，从图18的中间开始看，因为之前的是VGG16的，不是我们使用的ResNet的。</p>
+<p>先导入了一些包以及我们自定义的类方法，这部分比较详细，直接阅读：<br>
+<img src="/../images/post10_images/1.png" alt="图1" title="图1"><br>
+设置Cuda、种子（保证结果可重复）、用到的gpu数、是否采取混合精度训练、类别名称文件路径（就是指定有哪些要预测的类别）、预训练权重路径、输入图片大小、主干网络类型、是否使用预训练权重、锚框大小、冻结阶段训练参数、是否进行冻结训练、学习率、优化器等等基本参数。直接看图：<br>
+<img src="/../images/post10_images/2.png" alt="图2" title="图2"><br>
+<img src="/../images/post10_images/3.png" alt="图3" title="图3"><br>
+<img src="/../images/post10_images/4.png" alt="图4" title="图4"><br>
+<img src="/../images/post10_images/5.png" alt="图5" title="图5"><br>
+上面都是基本的参数设置，下面开始真正有关模型训练的部分。下面这张图，首先创建了一个模型实例，加载好resnet50的权重。<br>
+<img src="/../images/post10_images/6.png" alt="图6" title="图6"><br>
+而创建模型实例是FasterRCNN类的实例，这个是从net文件夹下的frcnn.py导入的。下面分析net.frcnn.py以及FasterRCNN类的代码。</p>
+<h2 id="1-net-frcnn-py">1. <a target="_blank" rel="noopener" href="http://net.frcnn.py">net.frcnn.py</a></h2>
+<p>结合刚才创建实例的那行代码，可以看到，要初始化一个FasterRCNN网络，需要传入：类别总数、模式、特征步长、锚框尺度、锚框高宽比、骨干网络、预训练标志。其中我们创建实例的时候，没有传入模式、特征步长、锚框高宽比，因此这三个参数将使用默认的参数。<br>
+由于我们传入的骨干网络是resnet50，会走下图的resnet50的分支，构建RPN网络。<br>
+我们待会再说RPN网络的问题，先说前向传播函数。在前向传播函数中，利用resnet50提取图像特征（self.extractor就是resnet50的extractor），然后利用上面构建的RPN网络获取建议框，并获取头部网络的分类结果和回归结果。<br>
+<img src="/../images/post10_images/7.png" alt="图7" title="图7"><br>
+然后说回RPN网络的构建。可以看到调用了<strong>net.resnet50.py的resnet50，net.rpn的RegionProposalNetwork，net.classifier.py的Resnet50RoIHead</strong>，我们逐个研究一下。<br>
+（在研究之前，把net.frcnn.py的剩余部分展示如图8，由于我们在文件里指定了forward的mode是forward，所以会走完整的流程，图8的分解步骤没有调用到，就不讲解了，有兴趣看图~）<br>
+<img src="/../images/post10_images/8.png" alt="图8" title="图8"></p>
+<h3 id="①-net-resnet50-py">① <a target="_blank" rel="noopener" href="http://net.resnet50.py">net.resnet50.py</a></h3>
+<p>下面的图9和图10非常详细地解释了resnet50的网络结构：<br>
+<img src="/../images/post10_images/9.png" alt="图9" title="图9"><br>
+<img src="/../images/post10_images/10.png" alt="图10" title="图10"><br>
+我们着重看图11，能看到刚才调用的resnet50函数出现在最后几行中。<br>
+resnet50函数首先实例化了一个模型，这个模型由传入Bottleneck残差块的ResNet类实现。<br>
+其次，if pretrained分支我们不会进入，因为我们本身就在外部定义过了model_path<br>
+在我们实例化ResNet类的时侯，其实已经走了forward前向传播，这在下面的图11中可以看到。所以直接用list获取了features和classifier，分别是特征提取部分和分类部分，转换成了Sequential模块并返回了。<br>
+也就是说，如果我们传入一些参数给resnet50函数，由于上层的ResNet类设置了完整的结构以及前向传播过程，我们就可以得到一个具备功能（还没有输入图像，但一旦给了图像，也就是ResNet类下forward函数中的参数x，那就可以获取结果了）的resnet50模型了。<br>
+<img src="/../images/post10_images/11.png" alt="图11" title="图11"><br>
+所以我们可以回看一眼下面的图7的一些部分，在左下角，获取的extractor实际上是resnet50函数返回的features，classifer就是resnet50函数返回的classifier；在右侧的forward模式中，第73行，self.extractor.forward(x)就是ResNet类中的forward函数，传入了图像x，提取得到了特征部分。<br>
+从图7中也可以看到特征部分的应用，就是在下面放到self.rpn.forward和self.head.forward中。<br>
+<img src="/../images/post10_images/7.png" alt="图7" title="图7"></p>
+<h3 id="②-net-rpn-py">② <a target="_blank" rel="noopener" href="http://net.rpn.py">net.rpn.py</a></h3>
+<p>下面我们分析上面图7右上角的部分。<br>
+这块有点乱，说到哪个图读者可以用snipaste截图一下钉在桌面上方便看。<br>
+图12到图14的上半部分定义了一个ProposalCreator类，它是为了生成建议框的。由于它是被下面的主要类RegionProposalNetwork调用实例化的类，我们先看RegionProposalNetwork，也就是图14的下半部分到图16。</p>
+<h4 id="regionproposalnetwork">RegionProposalNetwork</h4>
+<p>对比图7和图14下半部分，也就是看实例化的时候传入的参数，可以发现，锚框的尺度使用了类定义的默认值，其他都是由我们输入的，没有走默认值。<br>
+这个RegionProposalNetwork首先就生成基础先验框，调用的generate_anchor_base函数是一个现成的函数。<br>
+然后定义了几个卷积核，从图中可以看到是准备给不同任务的卷积核。<br>
+然后重头戏是下面的forward函数。在我们原来的图7中的forward函数，存在self.rpn.forward获得建议框，因此实际功能就在下面的这个forward函数实现了。<br>
+forward函数把我们的图像x先走了3×3的卷积核，提取特征，然后又分别走了两个1×1的卷积核，分别用于回归任务和分类任务。其中对于分类任务，我们还走了一个softmax，得到分类的分数。<br>
+到此为止，forward函数在回归任务上获取了一下偏移量，在分类任务上获取了得分，分类任务完事了。<br>
+接下来，forward函数先调用_enumerate_shifted_anchor生成锚框，这个是一个简单的锚框生成，是现成的函数。然后锚框出来了，接着就是要根据偏移量来接近实例，实现回归的目的。图14的第135行实例化了我们图12到图14定义的类ProposalCreator，所以在这里可以看到用的是proposal_layer这个实例化后的结果。<br>
+这个proposal_layer就直接生成了建议框，也就是根据偏移量得到的接近实例的锚框。<br>
+而这个proposal_layer，也就是类ProposalCreator，是如何生成锚框的，下面我们分析一下。<br>
+<img src="/../images/post10_images/14.png" alt="图14" title="图14"><br>
+<img src="/../images/post10_images/15.png" alt="图15" title="图15"><br>
+<img src="/../images/post10_images/16.png" alt="图16" title="图16"></p>
+<h4 id="proposalcreator">ProposalCreator</h4>
+<p>ProposalCreator也就包含init和call两个部分，call部分是实际实现功能的部分。<br>
+我们对call部分着重看一下，在图13到图14。<br>
+简单来说，这里使用了loc2bbox这个现成的函数，把RPN网络预测的偏移量（上面的回归任务的结果）应用到锚框上，得到建议框的坐标。然后这个类还做了非极大值抑制这个环节，通俗点就是保留更好的锚框。其余就是一些异常情况处理等。看图即可。<br>
+<img src="/../images/post10_images/12.png" alt="图12" title="图12"><br>
+<img src="/../images/post10_images/13.png" alt="图13" title="图13"><br>
+<img src="/../images/post10_images/14.png" alt="图14" title="图14"></p>
+<h3 id="③-net-classifier-py">③ <a target="_blank" rel="noopener" href="http://net.classifier.py">net.classifier.py</a></h3>
+<p>隔得有点久了，我们回到图7。上面我们解释了利用主干网络提取到特征，然后利用把这个特征传入RPN网络得到建议框。现在还差最后一个部分没有解析，也就是Resnet50RoIHead这个类，这个才会给出最终的分类结果和回归结果。<br>
+<img src="/../images/post10_images/7.png" alt="图7" title="图7"><br>
+在分析之前，我们得关注一下，其实图7中所示的forward函数是层层递进的，提取特征、获取建议框、同时这建议框的坐标也要传到classifier（从第63行可以看到真正实现功能的部分就是classifier）获取最终的结果。<br>
+<strong>虽然rpn部分也给出了一个建议框，但是需要注意的是它是针对二分类的，即前景和背景的区别，而不是目标检测的多分类的。classifier是在rpn的结果的基础上进一步调整，得到最终的分类</strong><br>
+下面的图中，从图18的中间开始看，因为之前的是VGG16的，不是我们使用的ResNet的。</p>
 <hr>
-<p><img src="/../images/post10_images/17.png" alt="图17" title="图17"><br>简单来说，classifier接收特征图（backbone提取的特征）和接收RPN网络生成的区域建议（ROIs）以及ROI对应的批次索引。然后使用ROIPool从特征图中提取固定大小的特征，将不同大小的ROI区域映射到特征图上，并提取对应区域的特征，将这些特征调整为固定大小（7×7）后征展平为一维向量。<br>然后，通过一系列全连接层（从ResNet50中提取的）处理这些特征，提取更高级的语义特征。<br>最后，在分类任务上通过全连接层预测每个ROI属于各个类别的概率，在回归任务上通过全连接层预测每个类别的边界框调整参数（参数用于精确调整ROI的位置和大小）。<br><img src="/../images/post10_images/18.png" alt="图18" title="图18"><br><img src="/../images/post10_images/19.png" alt="图19" title="图19"><br>至此我们获得了：某个图片属于某个类的分数以及边界框回归参数。</p>
-<h2 id="2-继续train-py"><a href="#2-继续train-py" class="headerlink" title="2. 继续train.py"></a>2. 继续train.py</h2><p>隔得太远了，刚才是图6这里（见下），实例化model所关联的所有代码。可以看到，这个模型就差输入了，只要输入图片，就能得到”某个图片属于某个类的分数以及边界框回归参数“<br><img src="/../images/post10_images/6.png" alt="图6" title="图6"><br>我们继续，图20的内容很简单，就是继续配置硬件环境以及获取我们的数据集。<br><img src="/../images/post10_images/20.png" alt="图20" title="图20"><br>在下面的图21中，我们设置训练步长和冻结训练参数。<br>训练步长是指模型参数更新的总次数，也就是进行梯度下降的总次数。设置训练步长是为了确保模型有足够的参数更新次数来学习数据集中的模式。<br>在冻结训练上，我们是启用了的，然后先让它冻结住，冻结 特征提取网络 的 参数（这样反向传播的时候不会更新了），同时调用freeze.bn冻结bn层，这个函数在图8的最后几行。<br>BN层（归一化层）在训练时会计算并更新每个mini-batch的均值和方差，而在测试时使用整个训练集的统计量。冻结BN层意味着即使在训练模式下，也使用之前计算好的统计量而不再更新。<br><img src="/../images/post10_images/21.png" alt="图21" title="图21"><br>图22首先展示了批次大小、学习率、优化器等的设置，为训练的启动做准备。<br>然后提取了数据集，并生成训练集和验证集。<br>然后创建了FasterRCNNTrainer对象，这个类是在fcrnn_training.py中定义的，我们待会会在第3部分讨论。<br>最后是实例化一个能记录map曲线、评估模型性能的类，这个对象在后面会用到。<br>也就是这个train_util和eval_callback马上就要在训练中用到了。<br><img src="/../images/post10_images/22.png" alt="图22" title="图22"></p>
-<h2 id="3-fcrnn-training-py"><a href="#3-fcrnn-training-py" class="headerlink" title="3. fcrnn_training.py"></a>3. fcrnn_training.py</h2><ul>
-<li>frcnn_training.py 文件实现了 Faster RCNN 的训练过程，包括以下内容：<br>计算边界框之间的 IoU，将边界框转换为回归目标；<br>为 RPN 网络生成训练目标，为 RoI 头部网络生成训练目标；<br>FasterRCNNTrainer类实现 Faster RCNN 的训练过程，包括损失计算和参数更新；<br>初始化网络权重、生成学习率调度函数、更新优化器的学习率等辅助函数</li>
+<p><img src="/../images/post10_images/17.png" alt="图17" title="图17"><br>
+简单来说，classifier接收特征图（backbone提取的特征）和接收RPN网络生成的区域建议（ROIs）以及ROI对应的批次索引。然后使用ROIPool从特征图中提取固定大小的特征，将不同大小的ROI区域映射到特征图上，并提取对应区域的特征，将这些特征调整为固定大小（7×7）后征展平为一维向量。<br>
+然后，通过一系列全连接层（从ResNet50中提取的）处理这些特征，提取更高级的语义特征。<br>
+最后，在分类任务上通过全连接层预测每个ROI属于各个类别的概率，在回归任务上通过全连接层预测每个类别的边界框调整参数（参数用于精确调整ROI的位置和大小）。<br>
+<img src="/../images/post10_images/18.png" alt="图18" title="图18"><br>
+<img src="/../images/post10_images/19.png" alt="图19" title="图19"><br>
+至此我们获得了：某个图片属于某个类的分数以及边界框回归参数。</p>
+<h2 id="2-继续train-py">2. <a target="_blank" rel="noopener" href="http://xn--train-jr2nkb.py">继续train.py</a></h2>
+<p>隔得太远了，刚才是图6这里（见下），实例化model所关联的所有代码。可以看到，这个模型就差输入了，只要输入图片，就能得到”某个图片属于某个类的分数以及边界框回归参数“<br>
+<img src="/../images/post10_images/6.png" alt="图6" title="图6"><br>
+我们继续，图20的内容很简单，就是继续配置硬件环境以及获取我们的数据集。<br>
+<img src="/../images/post10_images/20.png" alt="图20" title="图20"><br>
+在下面的图21中，我们设置训练步长和冻结训练参数。<br>
+训练步长是指模型参数更新的总次数，也就是进行梯度下降的总次数。设置训练步长是为了确保模型有足够的参数更新次数来学习数据集中的模式。<br>
+在冻结训练上，我们是启用了的，然后先让它冻结住，冻结 特征提取网络 的 参数（这样反向传播的时候不会更新了），同时调用freeze.bn冻结bn层，这个函数在图8的最后几行。<br>
+BN层（归一化层）在训练时会计算并更新每个mini-batch的均值和方差，而在测试时使用整个训练集的统计量。冻结BN层意味着即使在训练模式下，也使用之前计算好的统计量而不再更新。<br>
+<img src="/../images/post10_images/21.png" alt="图21" title="图21"><br>
+图22首先展示了批次大小、学习率、优化器等的设置，为训练的启动做准备。<br>
+然后提取了数据集，并生成训练集和验证集。<br>
+然后创建了FasterRCNNTrainer对象，这个类是在fcrnn_training.py中定义的，我们待会会在第3部分讨论。<br>
+最后是实例化一个能记录map曲线、评估模型性能的类，这个对象在后面会用到。<br>
+也就是这个train_util和eval_callback马上就要在训练中用到了。<br>
+<img src="/../images/post10_images/22.png" alt="图22" title="图22"></p>
+<h2 id="3-fcrnn-training-py">3. fcrnn_training.py</h2>
+<ul>
+<li>frcnn_training.py 文件实现了 Faster RCNN 的训练过程，包括以下内容：<br>
+计算边界框之间的 IoU，将边界框转换为回归目标；<br>
+为 RPN 网络生成训练目标，为 RoI 头部网络生成训练目标；<br>
+FasterRCNNTrainer类实现 Faster RCNN 的训练过程，包括损失计算和参数更新；<br>
+初始化网络权重、生成学习率调度函数、更新优化器的学习率等辅助函数</li>
 <li>特别值得注意的是，Faster RCNN 的训练涉及多个损失函数：</li>
-<li><ul>
+<li>
+<ul>
 <li>RPN 的分类损失：判断锚框是否包含物体</li>
 </ul>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>RPN 的回归损失：调整锚框位置和大小</li>
 </ul>
 </li>
-<li><ul>
+<li>
+<ul>
 <li>RoI 头部的分类损失：判断区域建议的类别</li>
 </ul>
 </li>
-<li><ul>
-<li>RoI 头部的回归损失：精细调整边界框位置和大小<br>这些损失函数共同优化，使得模型能够准确地检测和定位图像中的物体。</li>
+<li>
+<ul>
+<li>RoI 头部的回归损失：精细调整边界框位置和大小<br>
+这些损失函数共同优化，使得模型能够准确地检测和定位图像中的物体。</li>
 </ul>
 </li>
 </ul>
-<p>我们来看一看具体的代码：<br>图23定义了交并比IoU的计算函数和边界框坐标转换函数，分别用于去除重复度较高锚框和转换回归目标（得到和实际样本的偏移）。<br><img src="/../images/post10_images/23.png" alt="图23" title="图23"><br>图24和图25定义了一个类，AnchorTargetCreator，用于为RPN网络生成训练目标。这块主要是计算锚框和实际样本的接近程度，找到最匹配的那个，分配给真实框。（也就是这么多锚框，找一个跟真实最近的。）不要忘记RPN只是来做二分类的，前景/背景的锚框~<br><img src="/../images/post10_images/24.png" alt="图24" title="图24"><br><img src="/../images/post10_images/25.png" alt="图25" title="图25"><br>图26和图27定义了一个类，ProposalTargetCreator，用于为RoI头部网络生成训练目标。这个类要为每个RoI建议框分配最匹配的真实框和标签。怎么找到最匹配的呢？某个建议框和每个真实框都要计算IoU，argmax一下就好啦。同时，这个类将IoU大于正样本阈值的RoI建议框作为正样本，而可能有很多个正样本（很多建议框都指向这个真实框了），那么在图27中，限制了数量。<br>其他相关的内容看图即可，非常详细。<br><img src="/../images/post10_images/26.png" alt="图26" title="图26"><br><img src="/../images/post10_images/27.png" alt="图27" title="图27"><br>图27开始到图31展示FasterRCNNTrainer类的构造。这个类实现了训练过程。总体来说：<br>首先进行了初始化：接收模型和优化器、设置RPN和RoI的sigma参数、创建锚框目标生成器和建议框目标生成器、设置位置归一化标准。<br>然后前向传播：使用骨干网络提取图像的共享特征、使用RPN网络生成区域建议、拿到批次中的每张图像的属性值、为RPN网络生成训练目标、计算RPN网络的回归损失和分类损失、为分类器网络生成训练目标、使用分类器网络处理ROI、计算分类器网络的回归损失和分类损失、汇总所有损失并返回。<br>最后到训练更新阶段：清零梯度、执行前向传播计算损失、执行反向传播、更新模型参数、混合精度训练。<br>看图吧：<br><img src="/../images/post10_images/28.png" alt="图28" title="图28"><br><img src="/../images/post10_images/29.png" alt="图29" title="图29"><br><img src="/../images/post10_images/30.png" alt="图30" title="图30"><br><img src="/../images/post10_images/31.png" alt="图31" title="图31"></p>
-<h2 id="继续train-py"><a href="#继续train-py" class="headerlink" title="继续train.py"></a>继续train.py</h2><p>接下来就回到train.py的最后部分啦，这里开始调用相关函数进行训练了。<br>从0开始训练，先训练到解冻，再从解冻训练到结束，在这期间自适应调整学习率。<br>需要注意在最后的最后，图33的第455行，给fit_one_epoch传入了train_util，这个train_util就是我们刚才说的frcnn_training中FasterRCNNTrainer类的实例化对象。而fit_one_epoch是utils.utils_fit.py中的函数，就是将 frcnn_training与数据加载、损失记录、模型评估和保存等功能连接起来，形成一个完整的训练系统。<br><img src="/../images/post10_images/32.png" alt="图32" title="图32"><br><img src="/../images/post10_images/33.png" alt="图33" title="图33"></p>
-<h1 id="（二）predict-py"><a href="#（二）predict-py" class="headerlink" title="（二）predict.py"></a>（二）predict.py</h1><p>集成了四种不同的预测模式：单张图片预测(predict)、视频检测(video)、FPS性能测试(fps)和批量文件夹预测(dir_predict)。<br>可以通过修改 mode 参数来选择不同的预测方式，对图像或视频中的目标进行检测，并可以选择是否对检测结果进行裁剪、计数或保存。该文件是模型训练完成后进行实际应用的重要工具。<br><img src="/../images/post10_images/34.png" alt="图34" title="图34"><br><img src="/../images/post10_images/35.png" alt="图35" title="图35"><br><img src="/../images/post10_images/36.png" alt="图36" title="图36"><br><img src="/../images/post10_images/37.png" alt="图37" title="图37"></p>
-<h1 id="（三）其他文件"><a href="#（三）其他文件" class="headerlink" title="（三）其他文件"></a>（三）其他文件</h1><p>下面是一些并没有在训练、预测流程中实际调用的，但起到项目的辅助作用，或只是没有被调用到。</p>
-<h2 id="1-net-vgg16-py"><a href="#1-net-vgg16-py" class="headerlink" title="1. net.vgg16.py"></a>1. net.vgg16.py</h2><p>vgg16网络，和上面的resnet50是对应的，不过我们的案例中使用的是resnet，所以vgg16没有调用。<br>见图38、图39:<br><img src="/../images/post10_images/38.png" alt="图38" title="图38"><br><img src="/../images/post10_images/39.png" alt="图39" title="图39"></p>
-<h2 id="2-voc-annotation-py"><a href="#2-voc-annotation-py" class="headerlink" title="2. voc_annotation.py"></a>2. voc_annotation.py</h2><p>这是数据准备阶段的工具，用于处理VOC格式的数据集，生成训练和验证所需的标签文件。在开始训练前需要手动运行此文件来准备数据。<br>见图40到图43：<br><img src="/../images/post10_images/40.png" alt="图40" title="图40"><br><img src="/../images/post10_images/41.png" alt="图41" title="图41"><br><img src="/../images/post10_images/42.png" alt="图42" title="图42"><br><img src="/../images/post10_images/43.png" alt="图43" title="图43"></p>
-<h2 id="3-get-map-py"><a href="#3-get-map-py" class="headerlink" title="3. get_map.py"></a>3. get_map.py</h2><p>这是模型评估工具，用于计算模型在测试集上的mAP（平均精度均值）。训练完成后，可以手动运行此文件来评估模型性能。<br>见图44到图46：<br><img src="/../images/post10_images/44.png" alt="图44" title="图44"><br><img src="/../images/post10_images/45.png" alt="图45" title="图45"><br><img src="/../images/post10_images/46.png" alt="图46" title="图46"></p>
-<h2 id="4-summary-py"><a href="#4-summary-py" class="headerlink" title="4. summary.py"></a>4. summary.py</h2><p>这是网络结构分析工具，用于查看模型的结构、参数量和计算量(FLOPS)。在设计或修改网络时可以运行此文件来分析模型复杂度。<br>见图47：<br><img src="/../images/post10_images/47.png" alt="图47" title="图47"></p>
+<p>我们来看一看具体的代码：<br>
+图23定义了交并比IoU的计算函数和边界框坐标转换函数，分别用于去除重复度较高锚框和转换回归目标（得到和实际样本的偏移）。<br>
+<img src="/../images/post10_images/23.png" alt="图23" title="图23"><br>
+图24和图25定义了一个类，AnchorTargetCreator，用于为RPN网络生成训练目标。这块主要是计算锚框和实际样本的接近程度，找到最匹配的那个，分配给真实框。（也就是这么多锚框，找一个跟真实最近的。）不要忘记RPN只是来做二分类的，前景/背景的锚框~<br>
+<img src="/../images/post10_images/24.png" alt="图24" title="图24"><br>
+<img src="/../images/post10_images/25.png" alt="图25" title="图25"><br>
+图26和图27定义了一个类，ProposalTargetCreator，用于为RoI头部网络生成训练目标。这个类要为每个RoI建议框分配最匹配的真实框和标签。怎么找到最匹配的呢？某个建议框和每个真实框都要计算IoU，argmax一下就好啦。同时，这个类将IoU大于正样本阈值的RoI建议框作为正样本，而可能有很多个正样本（很多建议框都指向这个真实框了），那么在图27中，限制了数量。<br>
+其他相关的内容看图即可，非常详细。<br>
+<img src="/../images/post10_images/26.png" alt="图26" title="图26"><br>
+<img src="/../images/post10_images/27.png" alt="图27" title="图27"><br>
+图27开始到图31展示FasterRCNNTrainer类的构造。这个类实现了训练过程。总体来说：<br>
+首先进行了初始化：接收模型和优化器、设置RPN和RoI的sigma参数、创建锚框目标生成器和建议框目标生成器、设置位置归一化标准。<br>
+然后前向传播：使用骨干网络提取图像的共享特征、使用RPN网络生成区域建议、拿到批次中的每张图像的属性值、为RPN网络生成训练目标、计算RPN网络的回归损失和分类损失、为分类器网络生成训练目标、使用分类器网络处理ROI、计算分类器网络的回归损失和分类损失、汇总所有损失并返回。<br>
+最后到训练更新阶段：清零梯度、执行前向传播计算损失、执行反向传播、更新模型参数、混合精度训练。<br>
+看图吧：<br>
+<img src="/../images/post10_images/28.png" alt="图28" title="图28"><br>
+<img src="/../images/post10_images/29.png" alt="图29" title="图29"><br>
+<img src="/../images/post10_images/30.png" alt="图30" title="图30"><br>
+<img src="/../images/post10_images/31.png" alt="图31" title="图31"></p>
+<h2 id="继续train-py"><a target="_blank" rel="noopener" href="http://xn--train-jr2nkb.py">继续train.py</a></h2>
+<p>接下来就回到train.py的最后部分啦，这里开始调用相关函数进行训练了。<br>
+从0开始训练，先训练到解冻，再从解冻训练到结束，在这期间自适应调整学习率。<br>
+需要注意在最后的最后，图33的第455行，给fit_one_epoch传入了train_util，这个train_util就是我们刚才说的frcnn_training中FasterRCNNTrainer类的实例化对象。而fit_one_epoch是utils.utils_fit.py中的函数，就是将 frcnn_training与数据加载、损失记录、模型评估和保存等功能连接起来，形成一个完整的训练系统。<br>
+<img src="/../images/post10_images/32.png" alt="图32" title="图32"><br>
+<img src="/../images/post10_images/33.png" alt="图33" title="图33"></p>
+<h1>（二）<a target="_blank" rel="noopener" href="http://predict.py">predict.py</a></h1>
+<p>集成了四种不同的预测模式：单张图片预测(predict)、视频检测(video)、FPS性能测试(fps)和批量文件夹预测(dir_predict)。<br>
+可以通过修改 mode 参数来选择不同的预测方式，对图像或视频中的目标进行检测，并可以选择是否对检测结果进行裁剪、计数或保存。该文件是模型训练完成后进行实际应用的重要工具。<br>
+<img src="/../images/post10_images/34.png" alt="图34" title="图34"><br>
+<img src="/../images/post10_images/35.png" alt="图35" title="图35"><br>
+<img src="/../images/post10_images/36.png" alt="图36" title="图36"><br>
+<img src="/../images/post10_images/37.png" alt="图37" title="图37"></p>
+<h1>（三）其他文件</h1>
+<p>下面是一些并没有在训练、预测流程中实际调用的，但起到项目的辅助作用，或只是没有被调用到。</p>
+<h2 id="1-net-vgg16-py">1. <a target="_blank" rel="noopener" href="http://net.vgg16.py">net.vgg16.py</a></h2>
+<p>vgg16网络，和上面的resnet50是对应的，不过我们的案例中使用的是resnet，所以vgg16没有调用。<br>
+见图38、图39:<br>
+<img src="/../images/post10_images/38.png" alt="图38" title="图38"><br>
+<img src="/../images/post10_images/39.png" alt="图39" title="图39"></p>
+<h2 id="2-voc-annotation-py">2. voc_annotation.py</h2>
+<p>这是数据准备阶段的工具，用于处理VOC格式的数据集，生成训练和验证所需的标签文件。在开始训练前需要手动运行此文件来准备数据。<br>
+见图40到图43：<br>
+<img src="/../images/post10_images/40.png" alt="图40" title="图40"><br>
+<img src="/../images/post10_images/41.png" alt="图41" title="图41"><br>
+<img src="/../images/post10_images/42.png" alt="图42" title="图42"><br>
+<img src="/../images/post10_images/43.png" alt="图43" title="图43"></p>
+<h2 id="3-get-map-py">3. get_map.py</h2>
+<p>这是模型评估工具，用于计算模型在测试集上的mAP（平均精度均值）。训练完成后，可以手动运行此文件来评估模型性能。<br>
+见图44到图46：<br>
+<img src="/../images/post10_images/44.png" alt="图44" title="图44"><br>
+<img src="/../images/post10_images/45.png" alt="图45" title="图45"><br>
+<img src="/../images/post10_images/46.png" alt="图46" title="图46"></p>
+<h2 id="4-summary-py">4. <a target="_blank" rel="noopener" href="http://summary.py">summary.py</a></h2>
+<p>这是网络结构分析工具，用于查看模型的结构、参数量和计算量(FLOPS)。在设计或修改网络时可以运行此文件来分析模型复杂度。<br>
+见图47：<br>
+<img src="/../images/post10_images/47.png" alt="图47" title="图47"></p>
 
                 
             </div>
@@ -713,16 +850,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                                    <span class="chip bg-color">深度学习</span>
-                                </a>
-                            
                                 <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">
                                     <span class="chip bg-color">计算机视觉</span>
                                 </a>
                             
                                 <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
                                     <span class="chip bg-color">人工智能</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">深度学习</span>
                                 </a>
                             
                                 <a href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
@@ -1186,7 +1323,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">48.8k</span>&nbsp;字
+                class="white-color">50.3k</span>&nbsp;字
             
             
             
@@ -1446,37 +1583,32 @@ $(function () {
     
 
 
-    <!-- 白天和黑夜主题 -->
-<!-- <div class="sum-moon-box">
-    <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
-      <i id="sum-moon-icon" class="fas fa-moon" style="width:48px; height:48px; font-size: 28px;"></i>
-    </a>
-  </div> -->
-  
-  <script>
-    function switchNightMode() {
-      $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
-        setTimeout(function () {
-          $('body').hasClass('DarkMode') 
-          ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
-          : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
-            
-          setTimeout(function () {
-            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
-              $(this).remove()
-            })
-          }, 2e3)
-        })
-    }
-  </script>
+    <!-- 白天和黑夜主题
+<div class="sum-moon-box">
+  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
+    <i id="sum-moon-icon" class="fas fa-sun" style="width:48px; height:48px; font-size: 28px;"></i>
+  </a>
+</div> -->
 
-<div class="stars-con">
-    <div id="stars"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>  
-</div>
+<script>
+  function switchNightMode() {
+    $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+      setTimeout(function () {
+        $('body').hasClass('DarkMode') 
+        ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+        : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+          
+        setTimeout(function () {
+          $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+            $(this).remove()
+          })
+        }, 2e3)
+      })
+  }
+</script>
+
   
-     /* 模式判断 */
+     <!-- /* 模式判断 */
     <script>
         /* 模式判断 */
         if (localStorage.getItem('isDark') === '1') {
@@ -1486,7 +1618,7 @@ $(function () {
             document.body.classList.remove('DarkMode');
             $('#sum-moon-icon').removeleClass("fa-sun").addClass('fa-moon')
         }
-    </script> 
+    </script>  -->
  
    
     <!-- 下面这个是鼠标拖尾，想用的时候取消注释就可以 -->

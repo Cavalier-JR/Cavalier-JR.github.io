@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
 
     <script src="https://fastly.jsdelivr.net/npm/live2d-widgets@0/autoload.js"></script>
-<meta name="generator" content="Hexo 7.3.0">
+<meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.16.7/katex.min.css" rel="stylesheet" />
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Fetyloi's Blog" type="application/atom+xml">
 </head>
@@ -565,7 +565,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    585
+                    589
                 </div>
                 
 
@@ -596,26 +596,51 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>声明：本博客不为任何读者错误迁移C盘文件导致的系统崩溃负责，自己搞坏了别说我<br>如果下载连接进不去记得科学上网</p>
+<p>声明：本博客不为任何读者错误迁移C盘文件导致的系统崩溃负责，自己搞坏了别说我<br>
+如果下载连接进不去记得科学上网</p>
 </blockquote>
-<h1 id="1-C盘容量可视化软件WizTree"><a href="#1-C盘容量可视化软件WizTree" class="headerlink" title="1. C盘容量可视化软件WizTree"></a>1. C盘容量可视化软件WizTree</h1><p><a target="_blank" rel="noopener" href="https://diskanalyzer.com/download">点击下载WizTree</a><br>这个主要是能看一下C盘的占用结构，如图所示哈：<br><img src="/../images/31.png" alt="WizTree" title="WizTree"><br>当然类似的软件也不少，比如windirstat，SpaceSniffer，因为都差不多所以就不多说了。<br>对于这种软件，每次启动都得给管理员权限。WizTree如果你忘记用管理员权限打开了，界面左上角会有按钮的，按一下就以管理员模式重启了。</p>
-<h1 id="2-C盘文件迁移软件FreeMove"><a href="#2-C盘文件迁移软件FreeMove" class="headerlink" title="2. C盘文件迁移软件FreeMove"></a>2. C盘文件迁移软件FreeMove</h1><p><a target="_blank" rel="noopener" href="https://github.com/imDema/FreeMove/releases/tag/2.1.0">点击下载FreeMove</a><br>下载FreeMove.exe就可以啦。<br>选择路径，直接迁移。<br><img src="/../images/32.png" alt="FreeMove" title="FreeMove"></p>
+<h1>1. C盘容量可视化软件WizTree</h1>
+<p><a target="_blank" rel="noopener" href="https://diskanalyzer.com/download">点击下载WizTree</a><br>
+这个主要是能看一下C盘的占用结构，如图所示哈：<br>
+<img src="/../images/31.png" alt="WizTree" title="WizTree"><br>
+当然类似的软件也不少，比如windirstat，SpaceSniffer，因为都差不多所以就不多说了。<br>
+对于这种软件，每次启动都得给管理员权限。WizTree如果你忘记用管理员权限打开了，界面左上角会有按钮的，按一下就以管理员模式重启了。</p>
+<h1>2. C盘文件迁移软件FreeMove</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/imDema/FreeMove/releases/tag/2.1.0">点击下载FreeMove</a><br>
+下载FreeMove.exe就可以啦。<br>
+选择路径，直接迁移。<br>
+<img src="/../images/32.png" alt="FreeMove" title="FreeMove"></p>
 <blockquote>
-<p>这么做的原理：<br>①符号链接技术（Symbolic Links）<br>FreeMove通过将文件或文件夹物理移动到新位置后，在原路径创建一个系统级符号链接（类似于智能快捷方式），将所有对旧路径的访问请求自动重定向到新位置。<br>例如：将 C:\Program Files\App 迁移到 D:\App 后，原路径会生成一个符号链接，系统仍会认为程序位于C盘，但实际文件已转移至D盘。<br>②无需修改注册表<br>传统手动迁移可能导致注册表路径错误，但FreeMove的符号链接机制绕过了直接修改注册表的需求。系统仍通过原路径访问文件，而符号链接已在底层完成路径转换。<br>保持文件结构完整性<br>③迁移过程中，FreeMove会完整保留文件夹层级和文件关联性，确保程序依赖的配置文件、动态链接库（DLL）等仍能正确调用。</p>
+<p>这么做的原理：<br>
+①符号链接技术（Symbolic Links）<br>
+FreeMove通过将文件或文件夹物理移动到新位置后，在原路径创建一个系统级符号链接（类似于智能快捷方式），将所有对旧路径的访问请求自动重定向到新位置。<br>
+例如：将 C:\Program Files\App 迁移到 D:\App 后，原路径会生成一个符号链接，系统仍会认为程序位于C盘，但实际文件已转移至D盘。<br>
+②无需修改注册表<br>
+传统手动迁移可能导致注册表路径错误，但FreeMove的符号链接机制绕过了直接修改注册表的需求。系统仍通过原路径访问文件，而符号链接已在底层完成路径转换。<br>
+保持文件结构完整性<br>
+③迁移过程中，FreeMove会完整保留文件夹层级和文件关联性，确保程序依赖的配置文件、动态链接库（DLL）等仍能正确调用。</p>
 </blockquote>
-<h1 id="3-什么不能迁移"><a href="#3-什么不能迁移" class="headerlink" title="3. 什么不能迁移"></a>3. 什么不能迁移</h1><h2 id="作者提示的"><a href="#作者提示的" class="headerlink" title="作者提示的"></a>作者提示的</h2><ul>
+<h1>3. 什么不能迁移</h1>
+<h2 id="作者提示的">作者提示的</h2>
+<ul>
 <li>C:\Users</li>
 <li>C:\用户</li>
 <li>C:\Documents and Settings</li>
 <li>C:\Program Files</li>
-<li>C:\Program Files (x86)<br>（是说根目录不可以迁移，而不是说这些目录下的子目录。）<br>（例如C:\Program Files\xxxxxxx，xxxxxxx就可以迁移）</li>
+<li>C:\Program Files (x86)<br>
+（是说根目录不可以迁移，而不是说这些目录下的子目录。）<br>
+（例如C:\Program Files\xxxxxxx，xxxxxxx就可以迁移）</li>
 </ul>
-<h2 id="个人认为也不能迁移的"><a href="#个人认为也不能迁移的" class="headerlink" title="个人认为也不能迁移的"></a>个人认为也不能迁移的</h2><ul>
+<h2 id="个人认为也不能迁移的">个人认为也不能迁移的</h2>
+<ul>
 <li>C:\WINDOWS</li>
 <li>C:\windows</li>
-<li>C:\ProgramData<br>……<br>（反正我感觉这些根目录都不适合迁移，也不敢以身犯险哈）</li>
+<li>C:\ProgramData<br>
+…<br>
+（反正我感觉这些根目录都不适合迁移，也不敢以身犯险哈）</li>
 </ul>
-<h2 id="其他你拿不准的"><a href="#其他你拿不准的" class="headerlink" title="其他你拿不准的"></a>其他你拿不准的</h2><p>有很多文件挺大的但是不知道干啥用的，可以先搜搜，再迁移</p>
+<h2 id="其他你拿不准的">其他你拿不准的</h2>
+<p>有很多文件挺大的但是不知道干啥用的，可以先搜搜，再迁移</p>
 
                 
             </div>
@@ -787,16 +812,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">深度学习</span>
-                    </a>
-                    
                     <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">
                         <span class="chip bg-color">计算机视觉</span>
                     </a>
                     
                     <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
                         <span class="chip bg-color">人工智能</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
                     <a href="/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
@@ -1113,7 +1138,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">48.8k</span>&nbsp;字
+                class="white-color">50.3k</span>&nbsp;字
             
             
             
@@ -1373,37 +1398,32 @@ $(function () {
     
 
 
-    <!-- 白天和黑夜主题 -->
-<!-- <div class="sum-moon-box">
-    <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
-      <i id="sum-moon-icon" class="fas fa-moon" style="width:48px; height:48px; font-size: 28px;"></i>
-    </a>
-  </div> -->
-  
-  <script>
-    function switchNightMode() {
-      $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
-        setTimeout(function () {
-          $('body').hasClass('DarkMode') 
-          ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
-          : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
-            
-          setTimeout(function () {
-            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
-              $(this).remove()
-            })
-          }, 2e3)
-        })
-    }
-  </script>
+    <!-- 白天和黑夜主题
+<div class="sum-moon-box">
+  <a class="btn-floating btn-large waves-effect waves-light" onclick="switchNightMode()" title="切换主题" >
+    <i id="sum-moon-icon" class="fas fa-sun" style="width:48px; height:48px; font-size: 28px;"></i>
+  </a>
+</div> -->
 
-<div class="stars-con">
-    <div id="stars"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>  
-</div>
+<script>
+  function switchNightMode() {
+    $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+      setTimeout(function () {
+        $('body').hasClass('DarkMode') 
+        ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+        : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+          
+        setTimeout(function () {
+          $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+            $(this).remove()
+          })
+        }, 2e3)
+      })
+  }
+</script>
+
   
-     /* 模式判断 */
+     <!-- /* 模式判断 */
     <script>
         /* 模式判断 */
         if (localStorage.getItem('isDark') === '1') {
@@ -1413,7 +1433,7 @@ $(function () {
             document.body.classList.remove('DarkMode');
             $('#sum-moon-icon').removeleClass("fa-sun").addClass('fa-moon')
         }
-    </script> 
+    </script>  -->
  
    
     <!-- 下面这个是鼠标拖尾，想用的时候取消注释就可以 -->
