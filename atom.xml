@@ -6,7 +6,7 @@
   <link href="https://fetyloi.netlify.app/atom.xml" rel="self"/>
   
   <link href="https://fetyloi.netlify.app/"/>
-  <updated>2025-04-16T14:14:11.196Z</updated>
+  <updated>2025-04-25T09:06:02.300Z</updated>
   <id>https://fetyloi.netlify.app/</id>
   
   <author>
@@ -15,6 +15,45 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机视觉知识点总结（结合cs131）</title>
+    <link href="https://fetyloi.netlify.app/2025/04/25/post13/"/>
+    <id>https://fetyloi.netlify.app/2025/04/25/post13/</id>
+    <published>2025-04-25T08:33:38.000Z</published>
+    <updated>2025-04-25T09:06:02.300Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;〇、考点&quot;&gt;&lt;a href=&quot;#〇、考点&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://fetyloi.netlify.app/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="深度学习" scheme="https://fetyloi.netlify.app/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="计算机视觉" scheme="https://fetyloi.netlify.app/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    <category term="人工智能" scheme="https://fetyloi.netlify.app/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    <category term="卷积神经网络" scheme="https://fetyloi.netlify.app/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="目标检测" scheme="https://fetyloi.netlify.app/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
+    
+    <category term="边缘检测" scheme="https://fetyloi.netlify.app/tags/%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B/"/>
+    
+    <category term="特征提取" scheme="https://fetyloi.netlify.app/tags/%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96/"/>
+    
+    <category term="图像分割" scheme="https://fetyloi.netlify.app/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>C盘容量可视化与C盘清理</title>
@@ -121,7 +160,7 @@
     <link href="https://fetyloi.netlify.app/2025/04/06/post9/"/>
     <id>https://fetyloi.netlify.app/2025/04/06/post9/</id>
     <published>2025-04-06T14:45:45.000Z</published>
-    <updated>2025-04-13T15:22:54.683Z</updated>
+    <updated>2025-04-20T11:56:53.251Z</updated>
     
     
       
