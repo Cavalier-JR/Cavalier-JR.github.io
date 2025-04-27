@@ -220,7 +220,7 @@
       <link href="/2025/04/02/post7/"/>
       <url>/2025/04/02/post7/</url>
       
-        <content type="html"><![CDATA[<h1>解决方案</h1><p>  不用Desktop版本，转去用Portable版本就行了。<br>  Portable版本下载链接：<a href="https://objects.joplinusercontent.com/v3.2.13/JoplinPortable.exe?source=JoplinWebsite&amp;type=New">Joplin Protable</a><br>  记得把Desktop卸载干净。</p><h1>区别</h1><p>  Portable版本比Desktop版本启动要慢一些，不过终于是可以自定义位置，适合我这种C盘爆满用户。其实感觉启动速度也没差多少。<br>  网上的方案一般是在 <code>快捷方式&gt;属性&gt;目标</code> 添加 <code>--profile+新路径</code>。反正我这么做了之后出现了Bug，而且看很多人说重启后又回去了。<br>  找了官方文档，开发者就是建议用Portable或者用mklink去链接，我感觉还是Portable比较适合。<br><img src="/../images/26.png" alt="Portable Version" title="Portable Version"></p>]]></content>
+        <content type="html"><![CDATA[<h1>解决方案</h1><p>  不用Desktop版本，转去用Portable版本就行了。</p><blockquote><p>但是Portable版本的启动速度确实比较慢，如果非常介意这个的话还是可以用符号链接，例如使用FreeMove直接换盘~<a href="https://github.com/imDema/FreeMove/releases/tag/2.1.0">FreeMove</a><br>  Portable版本下载链接：<a href="https://objects.joplinusercontent.com/v3.2.13/JoplinPortable.exe?source=JoplinWebsite&amp;type=New">Joplin Protable</a><br>  记得把Desktop卸载干净。</p></blockquote><h1>区别</h1><p>  Portable版本比Desktop版本启动要慢一些，不过终于是可以自定义位置，适合我这种C盘爆满用户。其实感觉启动速度也没差多少。<br>  网上的方案一般是在 <code>快捷方式&gt;属性&gt;目标</code> 添加 <code>--profile+新路径</code>。反正我这么做了之后出现了Bug，而且看很多人说重启后又回去了。<br>  找了官方文档，开发者就是建议用Portable或者用mklink去链接，我感觉还是Portable比较适合。<br><img src="/../images/26.png" alt="Portable Version" title="Portable Version"></p>]]></content>
       
       
       <categories>
