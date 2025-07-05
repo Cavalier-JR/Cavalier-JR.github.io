@@ -566,21 +566,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-04-15
+                    2025-07-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    286
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -606,17 +606,167 @@
                 <p>起因是今天完善竞赛作品想整多语言的漏洞数据集，恰好找到了这个：<a target="_blank" rel="noopener" href="https://github.com/secureIT-project/CVEfixes">cvefixes</a><br>
 感觉应该还可以，打算先试试手，但是11个G，下的也太慢了。<br>
 然后就想起来之前我看见过NDM这个下载软件，当时记得性能不错，今天一用，果真快了不少。</p>
-<h1>NDM</h1>
-<h2 id="下载连接">下载连接</h2>
+<h1>（一）NDM</h1>
+<h2 id="1-下载连接">1. 下载连接</h2>
 <p><a target="_blank" rel="noopener" href="https://neatdownload.com/">NDM下载链接</a></p>
-<h2 id="配置">配置</h2>
+<h2 id="2-配置">2. 配置</h2>
 <p>因为我是下外面的东西，所以得科学上网，正好NDM有给配置代理的地方。<br>
 在 <code>Settings --&gt; Proxy/Socks</code> 中设置一下就好，clash的端口号自己去clash看一下<br>
 <img src="/../images/30.png" alt="配置代理" title="配置代理"></p>
-<h1>cvefixes</h1>
-<p>用不了，用不了，一般电脑用不了。实际的sql文件就有46G了，当我运行sqlite3指令的时候根本无法创建数据库，一开始以为问题出在我的运行环境上，在gitbash和conda里都试了，甚至弄了个脚本，最终发现问题就出现在内存上，每次都终止了然后输出一大串乱码。<br>
-哎，+我的小破电脑内存完全不够，咱还是不遭这个罪了，我去找别的数据集了QaQ…</p>
+<h2 id="3-资源嗅探">3. 资源嗅探</h2>
+<p>在Edge的扩展中下载NeatDownloadManager Extension，可以实现网站的资源嗅探，直接下载对应的视频等。<br>
+比较可惜的是对于m3u8格式的视频是无法成功提取的，只支持mp4，不过也很好了~</p>
+<h1>（二）cvefixes</h1>
+<p>之前尝试去获取这个数据集，在Windows系统下按照Readme文件操作，一直没成功。后面自己因为其他原因装了WSL，就又在这个Linux环境下试了一下，成功了。</p>
+<h2 id="1-提取db文件">1. 提取db文件</h2>
+<blockquote>
+<p>开始之前确保自己配置了linux环境，我这里直接以WSL作为示例了</p>
+</blockquote>
+<h3 id="1-标准做法">（1）标准做法</h3>
+<p>运行：</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">(cvefixesEnv) G:\VulnerabilityDataset\CVEfixes\CVEfixes&gt;wsl sh Code/create_CVEfixes_from_dump.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>可能提示</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">Code/create_CVEfixes_from_dump.sh: 7: gzcat: not found
+Code/create_CVEfixes_from_dump.sh: 7: sqlite3: not found<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>那就得下载对应的工具，执行：</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo apt update
+sudo apt install gzip sqlite3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>再次运行.sh脚本即可</p>
+<h3 id="2-我的做法">（2）我的做法</h3>
+<p>由于我<strong>安装了这些工具</strong>还是执行失败，问题出在gzcat命令的运行上而不是提取上，因此我选择：<br>
+将 <code>create_CVEfixes_from_dump.sh</code> 的内容替换如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">DATA_PATH</span><span class="token operator">=</span>Data/
+sqlite3 <span class="token variable">$DATA_PATH</span>/CVEfixes.db <span class="token operator">&lt;</span> <span class="token variable">$DATA_PATH</span>/CVEfixes.sql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>直接用<strong>Bandzip</strong>解压<strong>CVEfixes.sql.gz</strong>，解压出来的<strong>CVEfixes.sql</strong>存放在Data目录下。<br>
+再次运行.sh脚本，直接开始漫长的db文件提取</p>
+<blockquote>
+<p>简而言之，数据集前期的工作就是从CVEfixes.sql.gz变为CVEfixes.sql，最终成为CVEfixes.db</p>
+</blockquote>
+<h2 id="2-设置配置文件">2. 设置配置文件</h2>
+<p>在项目根目录（即本 <a target="_blank" rel="noopener" href="http://INSTALL.md">INSTALL.md</a> 文件所在位置）创建一个 <strong>.CVEfixes.ini</strong> 配置文件（仓库包含一个文件 example.CVEfixes.ini，复制改名即可）。<br>
+在 [CVEfixes] 部分定义以下变量以自定义路径：</p>
+<ul>
+<li>database_path：应包含 CVEfixes 数据库文件（以及提取过程中的一些临时文件）的目录。</li>
+<li>sample_limit: 要提取的样本数量，sample_limit = 0 被解释为无限数量的样本</li>
+</ul>
+<h2 id="3-设置-github-令牌">3. 设置 GitHub 令牌</h2>
+<p>这一步是因为CVEFixes数据集在db文件中存的是Github提交url，可以下载DB Browser for Sqlite来看具体的数据库表结构~<br>
+因此，获取一个 <strong>GitHub 令牌</strong>并配置到 <strong>.CVEfixes.ini</strong> 配置文件，其中包含两个变量 user 和 token，分别填写你的 GitHub 用户名和访问令牌。<br>
+如何获取令牌就自行百度吧，很简单~</p>
+<h2 id="4-提取源代码">4. 提取源代码</h2>
+<p>以下是我整的一个脚本，记得替换输出目录。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sqlite3
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">from</span> pathlib <span class="token keyword">import</span> Path
+<span class="token keyword">import</span> os
 
+<span class="token comment"># --- 步骤 1: 定义路径 ---</span>
+BASE_PATH <span class="token operator">=</span> Path<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">.</span>parent
+DB_PATH <span class="token operator">=</span> BASE_PATH <span class="token operator">/</span> <span class="token string">"Data"</span> <span class="token operator">/</span> <span class="token string">"CVEfixes.db"</span>
+
+<span class="token comment"># 定义输出目录 - 按用户要求修改路径</span>
+VULNERABLE_DIR <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">"G:/VulnerabilityDataset/CVEfixes/vulnerability_dataset/vulnerable"</span><span class="token punctuation">)</span>
+NON_VULNERABLE_DIR <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">"G:/VulnerabilityDataset/CVEfixes/vulnerability_dataset/non_vulnerable"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># --- 步骤 2: 创建输出目录 ---</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"正在创建源代码数据集输出目录..."</span><span class="token punctuation">)</span>
+VULNERABLE_DIR<span class="token punctuation">.</span>mkdir<span class="token punctuation">(</span>parents<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> exist_ok<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+NON_VULNERABLE_DIR<span class="token punctuation">.</span>mkdir<span class="token punctuation">(</span>parents<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> exist_ok<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"修复版本将保存到: </span><span class="token interpolation"><span class="token punctuation">{</span>VULNERABLE_DIR<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"未修复版本将保存到: </span><span class="token interpolation"><span class="token punctuation">{</span>NON_VULNERABLE_DIR<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+<span class="token comment"># --- 步骤 3: 连接数据库并查询数据 ---</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    conn <span class="token operator">=</span> sqlite3<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>DB_PATH<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"\n成功连接到数据库: </span><span class="token interpolation"><span class="token punctuation">{</span>DB_PATH<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> sqlite3<span class="token punctuation">.</span>Error <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"数据库连接失败: </span><span class="token interpolation"><span class="token punctuation">{</span>e<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    exit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 编写 SQL 查询语句 - 修复查询逻辑，获取文件级别的代码和CWE信息</span>
+query <span class="token operator">=</span> <span class="token triple-quoted-string string">"""
+SELECT DISTINCT 
+    f.file_change_id,
+    f.filename,
+    f.code_before,
+    f.code_after,
+    f.programming_language,
+    cc.cwe_id,
+    cv.cve_id
+FROM file_change f
+JOIN commits c ON f.hash = c.hash
+JOIN fixes fx ON c.hash = fx.hash
+JOIN cve cv ON fx.cve_id = cv.cve_id
+JOIN cwe_classification cc ON cv.cve_id = cc.cve_id
+WHERE f.programming_language IN ('C', 'C++', 'C/C++') 
+    AND f.code_before IS NOT NULL 
+    AND f.code_after IS NOT NULL
+    AND f.code_before != ''
+    AND f.code_after != ''
+ORDER BY f.file_change_id
+"""</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"正在从数据库查询源代码数据..."</span><span class="token punctuation">)</span>
+df <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_sql_query<span class="token punctuation">(</span>query<span class="token punctuation">,</span> conn<span class="token punctuation">)</span>
+conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"查询完毕！共找到 </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">len</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string"> 条源代码变更记录。"</span></span><span class="token punctuation">)</span>
+
+<span class="token comment"># --- 步骤 4: 遍历数据并保存文件 ---</span>
+<span class="token keyword">if</span> df<span class="token punctuation">.</span>empty<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"未查询到任何源代码数据，请检查数据库。"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\n开始处理并保存文件..."</span><span class="token punctuation">)</span>
+    total_files <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>df<span class="token punctuation">)</span>
+    processed_count <span class="token operator">=</span> <span class="token number">0</span>
+    
+    <span class="token keyword">for</span> index<span class="token punctuation">,</span> row <span class="token keyword">in</span> df<span class="token punctuation">.</span>iterrows<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token comment"># 获取原始文件的后缀名</span>
+            original_filename <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token string">'filename'</span><span class="token punctuation">]</span>
+            extension <span class="token operator">=</span> Path<span class="token punctuation">(</span>original_filename<span class="token punctuation">)</span><span class="token punctuation">.</span>suffix
+            <span class="token keyword">if</span> <span class="token keyword">not</span> extension<span class="token punctuation">:</span>
+                <span class="token comment"># 根据编程语言设置默认后缀</span>
+                <span class="token keyword">if</span> row<span class="token punctuation">[</span><span class="token string">'programming_language'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'C'</span><span class="token punctuation">:</span>
+                    extension <span class="token operator">=</span> <span class="token string">".c"</span>
+                <span class="token keyword">elif</span> row<span class="token punctuation">[</span><span class="token string">'programming_language'</span><span class="token punctuation">]</span> <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">'C++'</span><span class="token punctuation">,</span> <span class="token string">'C/C++'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                    extension <span class="token operator">=</span> <span class="token string">".cpp"</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    extension <span class="token operator">=</span> <span class="token string">".txt"</span>
+
+            <span class="token comment"># 构造新的文件名：CWE-ID_CVE-ID_文件变更ID.后缀</span>
+            cwe_id_sanitized <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token string">'cwe_id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">':'</span><span class="token punctuation">,</span> <span class="token string">'_'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token string">'_'</span><span class="token punctuation">)</span>
+            cve_id_sanitized <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token string">'cve_id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">,</span> <span class="token string">'_'</span><span class="token punctuation">)</span>
+            file_change_id <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token string">'file_change_id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            
+            new_filename <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">{</span>cwe_id_sanitized<span class="token punctuation">}</span></span><span class="token string">_</span><span class="token interpolation"><span class="token punctuation">{</span>cve_id_sanitized<span class="token punctuation">}</span></span><span class="token string">_</span><span class="token interpolation"><span class="token punctuation">{</span>file_change_id<span class="token punctuation">}</span></span><span class="token interpolation"><span class="token punctuation">{</span>extension<span class="token punctuation">}</span></span><span class="token string">"</span></span>
+
+            <span class="token comment"># 获取修复前和修复后的代码</span>
+            code_before <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token string">'code_before'</span><span class="token punctuation">]</span>
+            code_after <span class="token operator">=</span> row<span class="token punctuation">[</span><span class="token string">'code_after'</span><span class="token punctuation">]</span>
+
+            <span class="token comment"># 保存未修复版本 (vulnerable) - 修复前的代码</span>
+            <span class="token keyword">if</span> code_before <span class="token keyword">and</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>code_before<span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token keyword">and</span> code_before<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                vulnerable_path <span class="token operator">=</span> NON_VULNERABLE_DIR <span class="token operator">/</span> new_filename
+                <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>vulnerable_path<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+                    f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>code_before<span class="token punctuation">)</span>
+
+            <span class="token comment"># 保存已修复版本 (non_vulnerable) - 修复后的代码</span>
+            <span class="token keyword">if</span> code_after <span class="token keyword">and</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>code_after<span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">)</span> <span class="token keyword">and</span> code_after<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                fixed_path <span class="token operator">=</span> VULNERABLE_DIR <span class="token operator">/</span> new_filename
+                <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>fixed_path<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+                    f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>code_after<span class="token punctuation">)</span>
+            
+            processed_count <span class="token operator">+=</span> <span class="token number">1</span>
+            <span class="token keyword">if</span> processed_count <span class="token operator">%</span> <span class="token number">100</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"  已处理 </span><span class="token interpolation"><span class="token punctuation">{</span>processed_count<span class="token punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">{</span>total_files<span class="token punctuation">}</span></span><span class="token string"> 个文件..."</span></span><span class="token punctuation">)</span>
+
+        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"处理第 </span><span class="token interpolation"><span class="token punctuation">{</span>index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">}</span></span><span class="token string"> 行时出错: </span><span class="token interpolation"><span class="token punctuation">{</span>e<span class="token punctuation">}</span></span><span class="token string"> - 文件名: </span><span class="token interpolation"><span class="token punctuation">{</span>row<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'filename'</span><span class="token punctuation">,</span> <span class="token string">'N/A'</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+            <span class="token keyword">continue</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"\n所有文件处理完毕！成功处理了 </span><span class="token interpolation"><span class="token punctuation">{</span>processed_count<span class="token punctuation">}</span></span><span class="token string"> 个文件。"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"修复版本保存在: </span><span class="token interpolation"><span class="token punctuation">{</span>VULNERABLE_DIR<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"未修复版本保存在: </span><span class="token interpolation"><span class="token punctuation">{</span>NON_VULNERABLE_DIR<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -1113,7 +1263,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">30.6k</span>&nbsp;字
+                class="white-color">31.7k</span>&nbsp;字
             
             
             
