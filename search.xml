@@ -4,6 +4,43 @@
   
     
     <entry>
+      <title>使用扣子(Coze)搭建AI智能体</title>
+      <link href="/2025/07/05/post15/"/>
+      <url>/2025/07/05/post15/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>最近正好对这种AI工作流感兴趣，但是开源的例如n8n以及Dify需要点时间自己部署，懒得弄了。反正大致的原理、界面都是一致的，因此拿Coze来做个小小的体验~</p></blockquote><h1>（一）准备</h1><p>注册并登录<a href="https://www.coze.cn/">扣子</a><br>左侧菜单栏 → 加号按钮 → 创建智能体 → 填写名称等信息 → 确认</p><h1>（二）编排</h1><h2 id="1-模型设置">1. 模型设置</h2><p>此处选择DeepSeek-R1/250528，其他参数不做调整<br><img src="/../images/38.png" alt="模型设置" title="模型设置"></p><h2 id="2-插件">2. 插件</h2><p>点击插件右侧的加号，进入插件市场添加插件<br><img src="/../images/39.png" alt="添加插件" title="添加插件"></p><h2 id="3-预览与调试">3. 预览与调试</h2><p>在右侧进行对话，可以测试插件的应用效果<br><img src="/../images/40.png" alt="预览、调试" title="预览、调试"><br>后续继续加入其他插件，并测试即可</p><h2 id="4-工作流">4. 工作流</h2><blockquote><p>单纯提供一堆插件，模型的调用很随机，可能不符合我们的工作预期，因此需要构建工作流</p></blockquote><p>点击工作流右侧的加号，创建工作流</p><h3 id="1-名称-描述">（1）名称、描述</h3><p><img src="/../images/41.png" alt="设置名称和描述" title="设置名称和描述"></p><h3 id="2-设置输入">（2）设置输入</h3><p><img src="/../images/42.png" alt="设置输入" title="设置输入"></p><h3 id="3-添加节点">（3）添加节点</h3><p>点击下方添加节点 → 插件 → 添加对应插件 → 给插件进行连线</p><h3 id="4-配置输入输出">（4）配置输入输出</h3><blockquote><p>以我这次“搜索原神角色总结信息”的任务为例</p></blockquote><h4 id="①-search的输入">① Search的输入</h4><p>输入就是我们最开始的输入<br><img src="/../images/43.png" alt="Search的输入" title="Search的输入"></p><h4 id="②-链接读取的输入输出">② 链接读取的输入输出</h4><p>由于上一步搜索的链接很多，因此首先切换到批处理<br>如图配置<br><img src="/../images/44.png" alt="配置" title="配置"></p><h4 id="③-代码">③ 代码</h4><p>接入一段代码节点，在下方添加节点选择代码<br>这里添加了一段python代码，用于将上一步的内容拼接到一起<br>点击“在IDE里编辑”，可以编辑代码，并测试代码：<br><img src="/../images/45.png" alt="编辑代码" title="编辑代码"><br>测试完成后按照代码逻辑设置输入输出：<br><img src="/../images/46.png" alt="设置输入输出" title="设置输入输出"></p><h4 id="④-完整的工作流">④ 完整的工作流</h4><p>试运行后就可以发布了<br><img src="/../images/47.png" alt="发布" title="发布"></p><h3 id="5-发布并运行">（5）发布并运行</h3><p>我发现了一个问题，如图所示：<br><img src="/../images/48.png" alt="工具调用失败并出现问题" title="工具调用失败并出现问题"><br>也就是说，原来的“代码”节点中，并未对data的null值进行处理；然而由于搜索提取到的内容可能是视频，无法提取到content，因此报错<br>修改后的python代码节点：</p><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span>args<span class="token punctuation">:</span> Args<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> Output<span class="token punctuation">:</span>    params <span class="token operator">=</span> args<span class="token punctuation">.</span>params    result <span class="token operator">=</span> <span class="token string">""</span>    <span class="token comment"># 安全获取input列表（处理null/undefined情况）</span>    input_list <span class="token operator">=</span> params<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"input"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">if</span> params <span class="token keyword">else</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>    <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>input_list<span class="token punctuation">,</span> <span class="token builtin">list</span><span class="token punctuation">)</span><span class="token punctuation">:</span>        input_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>    <span class="token comment"># 遍历处理每个条目</span>    <span class="token keyword">for</span> item <span class="token keyword">in</span> input_list<span class="token punctuation">:</span>        <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> <span class="token builtin">dict</span><span class="token punctuation">)</span><span class="token punctuation">:</span>            <span class="token keyword">continue</span>        <span class="token comment"># 多层安全访问（处理data=null和content=null）</span>        data <span class="token operator">=</span> item<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"data"</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> <span class="token builtin">dict</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token boolean">None</span>        content <span class="token operator">=</span> data<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"content"</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token builtin">dict</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token boolean">None</span>        <span class="token comment"># 仅当content存在且非空时才拼接</span>        <span class="token keyword">if</span> content <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span>            result <span class="token operator">+=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span>    <span class="token comment"># 返回标准化输出（即使全为null也返回有效结构）</span>    <span class="token keyword">return</span> <span class="token punctuation">{</span>        <span class="token string">"key0"</span><span class="token punctuation">:</span> result <span class="token keyword">or</span> <span class="token string">""</span>  <span class="token comment"># 保证始终返回字符串</span>    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>修改后，测试用例为胡桃，测试如下：<br><img src="/../images/49.png" alt="最终测试" title="最终测试"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Agent </tag>
+            
+            <tag> 大模型 </tag>
+            
+            <tag> MCP </tag>
+            
+            <tag> MCP Server </tag>
+            
+            <tag> Coze </tag>
+            
+            <tag> 扣子 </tag>
+            
+            <tag> AI工作流 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>从零编写一个MCP Server</title>
       <link href="/2025/07/03/post14/"/>
       <url>/2025/07/03/post14/</url>
@@ -363,7 +400,7 @@
     
     
     <entry>
-      <title>VideoCaptioner字幕生成与翻译相关配置与cookie问题解决</title>
+      <title>VideoCaptioner字幕生成与翻译相关配 &amp; cookie问题解决</title>
       <link href="/2025/03/20/post1/"/>
       <url>/2025/03/20/post1/</url>
       
