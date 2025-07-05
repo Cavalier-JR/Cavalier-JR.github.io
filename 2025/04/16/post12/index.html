@@ -558,21 +558,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-04-16
+                    2025-07-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    589
+                    930
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -620,7 +620,32 @@ FreeMove通过将文件或文件夹物理移动到新位置后，在原路径创
 保持文件结构完整性<br>
 ③迁移过程中，FreeMove会完整保留文件夹层级和文件关联性，确保程序依赖的配置文件、动态链接库（DLL）等仍能正确调用。</p>
 </blockquote>
-<h1>3. 什么不能迁移</h1>
+<h1>3. 迁移失败的情况</h1>
+<p>对于一些很长的路径，迁移可能会失败，如图所示：<br>
+<img src="/../images/37.png" alt="FreeMove" title="迁移失败"><br>
+解决方式是手动创建符号链接。</p>
+<h2 id="1-确保在windows中启用长路径支持">（1）确保在Windows中启用长路径支持</h2>
+<ul>
+<li>专业版Windows：任务栏搜索框中输入 gpedit.msc 并回车，打开“本地组策略编辑器”，依次进入：计算机配置 &gt; 管理模板 &gt; 系统 &gt; 文件系统，找到并双击 “启用 Win32 长路径”，选择“已启用”，点击“应用”和“确定”。</li>
+<li>家庭版windows：打开regedit，找到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem，将其中的LongPathsEnabled值修改为1</li>
+</ul>
+<h2 id="2-使用robocopy手动移动">（2）使用RoboCopy手动移动</h2>
+<p>用 Windows 自带的、非常强大的命令行工具 RoboCopy 来移动文件夹：</p>
+<ul>
+<li>完全退出迁移目录的所有程序</li>
+<li>创建目标文件夹，用来存放即将移动过来的文件</li>
+<li>以管理员身份打开命令提示符cmd</li>
+<li>执行移动命令<br>
+移动命令格式：</li>
+</ul>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">robocopy "原目录" "新目录" /E /MOVE /J<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中，/E 表示复制所有子目录，包括空的；/MOVE 移动文件和目录（复制后会从源位置删除）；/J 是推荐使用的参数，可以提升大文件复制的性能。</p>
+<h2 id="3-手动创建符号链接">（3）手动创建符号链接</h2>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">mklink /D "原目录" "新目录"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1>4. 什么不能迁移</h1>
+<blockquote>
+<p>适合迁移的大部分时User目录下的以及其他散户， 而ProgramData/Program Files/Program Files (x86)/System Volume Information/Recovery 这些都别碰</p>
+</blockquote>
 <h2 id="作者提示的">作者提示的</h2>
 <ul>
 <li>C:\Users</li>
@@ -628,16 +653,15 @@ FreeMove通过将文件或文件夹物理移动到新位置后，在原路径创
 <li>C:\Documents and Settings</li>
 <li>C:\Program Files</li>
 <li>C:\Program Files (x86)<br>
-（是说根目录不可以迁移，而不是说这些目录下的子目录。）<br>
-（例如C:\Program Files\xxxxxxx，xxxxxxx就可以迁移）</li>
+（是说根目录不可以迁移，而不是说这些目录下的子目录。）</li>
 </ul>
-<h2 id="个人认为也不能迁移的">个人认为也不能迁移的</h2>
+<h2 id="我提示也不能迁移的">我提示也不能迁移的</h2>
 <ul>
-<li>C:\WINDOWS</li>
+<li>C:\WINDOWS （整个别碰）</li>
 <li>C:\windows</li>
 <li>C:\ProgramData<br>
 …<br>
-（反正我感觉这些根目录都不适合迁移，也不敢以身犯险哈）</li>
+（这些根目录都不适合迁移，别以身犯险哈）</li>
 </ul>
 <h2 id="其他你拿不准的">其他你拿不准的</h2>
 <p>有很多文件挺大的但是不知道干啥用的，可以先搜搜，再迁移</p>
@@ -1138,7 +1162,7 @@ FreeMove通过将文件或文件夹物理移动到新位置后，在原路径创
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">51.8k</span>&nbsp;字
+                class="white-color">52.1k</span>&nbsp;字
             
             
             
