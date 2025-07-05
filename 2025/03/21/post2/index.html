@@ -562,7 +562,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-03-24
+                    2025-07-05
                 </div>
                 
 
@@ -632,12 +632,12 @@
 &gt; 经验风险最小化、结构风险最小化、最大似然估计、最大后验估计
 &gt;
 <p>经验风险最小化–&gt;过拟合–&gt;结构风险最小化–&gt;正则化</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1730373430149-accedfba-3c10-44eb-8311-4b83b1352b11.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1730373430149-accedfba-3c10-44eb-8311-4b83b1352b11.png" alt=""></p>
 <h2 id="GikeT">6.偏差-方差分解</h2>
 偏差-方差分解的目的是：在模型拟合能力和复杂度之间取得较好平衡
 <p>降低偏差：增加数据特征、提高模型复杂度、减小正则化系数</p>
 <p>降低方差：降低模型复杂度、加大正则化系数、引入先验、集成模型</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1730373401347-fa1537ac-88f1-41f2-ac87-8e9ff167a8d3.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1730373401347-fa1537ac-88f1-41f2-ac87-8e9ff167a8d3.png" alt=""></p>
 <h2 id="F3MbP">7.数据的特征表示</h2>
 &gt; 图像特征、文本特征
 &gt;
@@ -743,7 +743,7 @@ Softmax回归也采用交叉熵作为损失函数。Softmax回归核心是应用
 <p>TDNN适合处理短期依赖和固定窗口长度的任务，NARX适用于有明确输入输出关系，RNN适合处理复杂、长依赖关系的任务</p>
 <h2 id="QdVQL">2.从简单循环网络SRN理解RNN的具体原理</h2>
 SRN=两层前馈神经网络+隐藏层到隐藏层的反馈连接。隐藏层状态的计算见笔记图。
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1730374448373-16f7a3ea-b431-41a5-b467-0c403b2d16bf.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1730374448373-16f7a3ea-b431-41a5-b467-0c403b2d16bf.png" alt=""></p>
 <h2 id="b0jK3">3.图灵完备是什么概念</h2>
 图灵完备：可以实现图灵机的所有功能的数据操作规则称为图灵完备，如主流编程语言。
 <p>p.s. 所有的图灵机都可以被一个由sigmoid型激活函数的神经元构成的全连接RNN来进行模拟</p>
@@ -760,7 +760,7 @@ SRN=两层前馈神经网络+隐藏层到隐藏层的反馈连接。隐藏层状
 <p>③异步的序列到序列模式（编码器-解码器模型）：输入序列输出序列不一定严格对应，也不一定长度相等。编码器和解码器是两个不同的RNN，样本x按不同时刻输入编码器得到编码，再把编码传入解码器得到输出序列</p>
 <h2 id="qynpL">5.RNN怎么进行参数学习—梯度下降—BPTT/RTRL</h2>
 RNN的参数学习BPTT和RTRL见图。BPTT计算少，但要存所有时刻中间梯度，空间复杂度高；RTRL不需要梯度回传。
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1730374448373-16f7a3ea-b431-41a5-b467-0c403b2d16bf.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1730374448373-16f7a3ea-b431-41a5-b467-0c403b2d16bf.png" alt=""></p>
 <h2 id="cVKXX">6.什么是梯度爆炸问题，什么是梯度消失问题，什么是长程依赖问题，怎么解决这些问题</h2>
 ①长程依赖问题：时刻t的输出依赖时刻k的输入，但t和k间隔很长，神经网络很难建模这种长距离依赖关系，称长程依赖问题。为什么难建模，是因为t和k间隔很长的情况下，引发梯度爆炸问题和梯度消失问题。【梯度爆炸问题、梯度消失问题见上图】
 <p>②怎么解决：</p>
@@ -1062,7 +1062,7 @@ Hopfield网络是由一组互相连接的神经元组成的RNN。
 <p>c. 特征选择上：可以实现特征自动选择，自动是指只选择和输入样本最相                                关的少数特征，能降低噪声，减轻过拟合</p>
 <p>⑤怎么得到稀疏编码：得到编码，需要完备基向量，那稀疏编码，就需要过完备的基向量</p>
 <p>⑥那怎么得到过完备基向量：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1730552224573-82cca291-9947-4ea8-961c-86189850d4b2.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1730552224573-82cca291-9947-4ea8-961c-86189850d4b2.png" alt=""></p>
 <p>按照这个图来找到，其中：</p>
 <p>𝒁 = [𝒛<sup>(1)</sup>, ⋯ , 𝒛<sup>(𝑁)</sup>]， 这个集合里面每个元素都是一组基向量的系数𝒛，</p>
 <pre><code>𝒛 = [𝑧1, ⋯ , 𝑧𝑀] ，𝒛 也称为一个输入样本 𝒙 的编码
@@ -1079,14 +1079,14 @@ Hopfield网络是由一组互相连接的神经元组成的RNN。
 <p>②结构：编码器 f（把数据从D维映射到M维）</p>
 <p>解码器 g（把数据从M维重构到D维）</p>
 <p>③学习目标：既然是为了要重构原来的样本，就应该<strong>最小化重构错误</strong></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731157201110-cbd55a19-fec0-43f8-a017-9d0bae32bb06.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731157201110-cbd55a19-fec0-43f8-a017-9d0bae32bb06.png" alt=""></p>
 <p>也就是最小化上面这个式子</p>
 <p>④根据维度来讨论：</p>
 <p>a. 𝑀 ≥ 𝐷：一定可以找到一组或多组解使得 𝑓 ∘ 𝑔 为单位函数并使得重构错误为 0</p>
 <p>然后<strong>加一些约束</strong>，比如要求编码只能取K个不同值，那就转换为K类的聚类问题的解了</p>
 <p>b. 𝑀 &lt; 𝐷：相当于一种降维/特征抽取方法了</p>
 <p>⑤简单自编码器：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731157508881-3602b56b-1def-49ba-ad3f-213a43d178aa.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731157508881-3602b56b-1def-49ba-ad3f-213a43d178aa.png" alt=""></p>
 <p>如果W2=W1的转置，就成为捆绑权重，这会使得自编码器参数少，更容易学习，还起到一定的正则化作用。</p>
 <p>通过最小化重构错误 <code> ℒ=  ∑  ‖𝒙(𝑛) − 𝒙′(𝑛))‖2 + 𝜆‖𝑾 ‖2𝐹 .</code> 学习网络参数</p>
 <h3 id="XQHlz">（4）稀疏自编码器</h3>
@@ -1148,11 +1148,11 @@ Hopfield网络是由一组互相连接的神经元组成的RNN。
 <h5 id="LqM7K">超立方体核函数</h5>
 ![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1731242339850-1d873b55-62b1-43e1-8646-fa8e6eab03db.png)![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1731242356384-deb08fe7-6b60-4dfc-8d9d-f4defdcc8c54.png)
 <p>然后就得到了：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731242371652-7d5125da-6980-477d-b31f-0791c7085cd9.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731242371652-7d5125da-6980-477d-b31f-0791c7085cd9.png" alt=""></p>
 <h5 id="UbbNz">高斯核函数</h5>
 ![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1731242424604-234eca7b-08a3-43be-8cc8-00001d5f8724.png)
 <p>然后就得到了：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731242448718-57d4ee0b-e42e-49e7-ab00-049fce19a979.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731242448718-57d4ee0b-e42e-49e7-ab00-049fce19a979.png" alt=""></p>
 <h4 id="IX3Od">⑤K近邻方法（KNN）</h4>
 KNN用于分类已经很熟悉了
 <p>在密度估计上，KNN是这么做的：</p>
@@ -1173,7 +1173,7 @@ KNN用于分类已经很熟悉了
 引入随机性：随机构造训练样本/随机选择特征
 <h4 id="jFr9w">（2）Bagging——随机构造训练样本</h4>
 在原始数据集上进行有放回的随机采样，得到M个小训练集，训练M个模型，然后投票
-<p><img src="https://cdn.nlark.com/yuque/0/2024/jpeg/40781129/1731583942158-8d1d144b-df6a-4211-9043-165de7c02a15.jpeg" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/jpeg/40781129/1731583942158-8d1d144b-df6a-4211-9043-165de7c02a15.jpeg" alt=""></p>
 <h4 id="QR2dy">（3）随机森林——Bagging+随机选择特征</h4>
 每个基模型都是一颗决策树
 <h3 id="gYTH4">3.Boosting类方法</h3>
@@ -1203,7 +1203,7 @@ KNN用于分类已经很熟悉了
 <h3 id="zuref">1.自训练/自举法</h3>
 <h4 id="SxkPp">（1）思想</h4>
 有标注的数据——训练模型——模型预测无标住样本标签——预测置信度高的样本+模型预测的无标注样本的标签
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731587795982-6676d8ef-9874-4c8c-a522-cefc1bb7563b.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731587795982-6676d8ef-9874-4c8c-a522-cefc1bb7563b.png" alt=""></p>
 <h4 id="A4Ege">（2）缺点</h4>
 无法保证伪标签是正确的——if伪标签是错的，反而会损害模型预测能力
 <h3 id="iJ5rn">2.协同训练——自训练的一种改进方法</h3>
@@ -1212,7 +1212,7 @@ KNN用于分类已经很熟悉了
 	数据的不同侧面
 <p>eg.每个网页的类别，可以从文字内容判断（视角V<sub>1</sub>），也可以根据网页间链接关系判断（视角V<sub>2</sub>）</p>
 <p>:::</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731589553571-29e6de06-557f-4ae4-8f99-99be0e938f51.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731589553571-29e6de06-557f-4ae4-8f99-99be0e938f51.png" alt=""></p>
 <p>训练出的模型f1，f2具备两个不同的视角，具有一定的互补性</p>
 <h2 id="m0RWe">三、多任务学习</h2>
 <h3 id="LOdVw">1.思想</h3>
@@ -1326,15 +1326,15 @@ a.多任务学习是同时学习多个任务，归纳迁移学习是分两个阶
 关键在于如何学习领域无关的表示！
 <h6 id="ChETY">  d.如何学习领域无关的表示</h6>
             + 优化参数使得映射后的两个领域的输入分布差异最小
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731655469231-93cae5d4-0b14-4d57-a8e3-001ac120b81e.png" alt></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731655482050-1cc32515-db47-4b39-ad4e-32b7daeb3bd4.png" alt></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731655498958-cea3bf65-74ad-4676-a78f-5ff1e250c17c.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731655469231-93cae5d4-0b14-4d57-a8e3-001ac120b81e.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731655482050-1cc32515-db47-4b39-ad4e-32b7daeb3bd4.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731655498958-cea3bf65-74ad-4676-a78f-5ff1e250c17c.png" alt=""></p>
 <pre><code>        + 通过领域对抗学习
 </code></pre>
 <p>引入领域判别器<code>𝑐</code>来判断一个样本是来自于哪个领域</p>
 <p>if <code>𝑐</code> 不能判断一个映射特征的领域信息，则是一个领域无关的表示</p>
 <p>具体做法见下图</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731654473639-580640f6-2a79-4ef8-930e-a50ec1813827.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731654473639-580640f6-2a79-4ef8-930e-a50ec1813827.png" alt=""></p>
 <h2 id="v8vFT">五、终身学习/持续学习</h2>
 &gt; 像人类一样具有持续不断的学习能力，不因新知识忘记旧知识，反而用旧知识帮助学习新知识
 &gt;
@@ -1349,7 +1349,7 @@ a.多任务学习是同时学习多个任务，归纳迁移学习是分两个阶
 目前神经网络往往过参数化 --&gt; 一个任务有很多参数组合都可达到最好性能 --&gt; 选择一组不影响先前任务的参数
 <h4 id="nO8iq">一个方法——弹性权重巩固</h4>
 以两个任务的持续学习为例子
-<p><img src="https://cdn.nlark.com/yuque/0/2024/jpeg/40781129/1731674378952-13d5f429-766f-4532-b9ee-6beb2d45df01.jpeg" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/jpeg/40781129/1731674378952-13d5f429-766f-4532-b9ee-6beb2d45df01.jpeg" alt=""></p>
 <h5 id="b9pTt">①对Fisher信息矩阵部分进一步说明逻辑</h5>
 我们用Fisher信息矩阵近似精度矩阵，是因为精度矩阵与协方差矩阵存在互为逆矩阵的关系。
 <p>本质上想要的是协方差矩阵。</p>
@@ -1364,14 +1364,14 @@ a.多任务学习是同时学习多个任务，归纳迁移学习是分两个阶
 <p>（解释一下，这里就是在算协方差，Cov=E[s<sup>2</sup>]-(E[s])<sup>2</sup>，又因为期望为0，所以只剩前面那项）</p>
 <p>得到之后的问题：对于<code>𝐹(𝜃)</code>表达式，其中的似然函数<code>𝑝(𝑥;𝜃)</code>我们不知道具体形式，咋办呢？</p>
 <p>可用经验分布估计：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731675165688-e0da9d51-e692-4236-bff6-4d0302a2e68a.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731675165688-e0da9d51-e692-4236-bff6-4d0302a2e68a.png" alt=""></p>
 <p>然后怎么用：一方面，<code>𝐹(𝜃)</code>对角线的值反应<code>𝜃</code>在通过最大似然进行估计时的不确定性</p>
 <p>–&gt;值大：则估计值方差越小，估计越可靠，携带关于数据分布的信息越多</p>
 <p>–&gt;值小：则估计值方差越大，估计越不可靠，携带关于数据分布的信息越少</p>
 <p>另一方面，可用作信息量的衡量，用下面这个公式来衡量</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731675394726-a4de5b76-d73d-4e9e-a2e5-020e20eaf099.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731675394726-a4de5b76-d73d-4e9e-a2e5-020e20eaf099.png" alt=""></p>
 <p>还有，得到了训练任务<code>𝒯&lt;sub&gt;𝐵&lt;/sub&gt;</code>时的损失函数</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731676099047-d3560297-1bce-4963-aa4b-57afb95d9630.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731676099047-d3560297-1bce-4963-aa4b-57afb95d9630.png" alt=""></p>
 <h2 id="SYQHd">六、元学习——学习的学习</h2>
 &gt; 动态调整学习方式，像人脑一样，面对不同任务，自动找到对应的解决方式
 &gt;
@@ -1396,7 +1396,7 @@ a.多任务学习是同时学习多个任务，归纳迁移学习是分两个阶
 学习一个参数θ，这个θ经过梯度迭代，就可以在新任务上达到最好性能
 <h5 id="Jjbor">③算法</h5>
 可以看一下，其实和前面说的做法是一致的
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731678036284-fe6edbd4-185f-4da1-a78b-baf95b9f9aa5.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1731678036284-fe6edbd4-185f-4da1-a78b-baf95b9f9aa5.png" alt=""></p>
 <h1 id="bCqrh">第11章 概率图模型</h1>
 &gt; 用图结构来描述多元随机变量间条件独立关系的概率模型
 &gt;
@@ -1433,7 +1433,7 @@ K维随机变量——联合概率为高维空间分布——难建模——需�
 <h5 id="EpbIc">②间接果因关系</h5>
 <h5 id="H9K0M">③共因关系：<font style="color:#DF2A3F;">因</font>X<sub>2</sub>已知，则<font style="color:#DF2A3F;">独立</font></h5>
 <h5 id="i8eAB">④共果关系：<font style="color:#DF2A3F;">果</font>X<sub>2</sub>已知，则<font style="color:#DF2A3F;">不独立</font></h5>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732105043856-3274b6f5-ae59-4501-96fb-e1373c2a0a76.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732105043856-3274b6f5-ae59-4501-96fb-e1373c2a0a76.png" alt=""></p>
 <p>参照这张图来理解，其中<strong>x</strong><sub><strong>2</strong></sub>是中间节点</p>
 <h4 id="EJrbG">（3）局部马尔可夫性</h4>
 给定父节点，则每个随机变量要条件独立于它的非后代节点
@@ -1458,7 +1458,7 @@ K维随机变量——联合概率为高维空间分布——难建模——需�
 <p>若<code>&lt;font style="color:#DF2A3F;"&gt;𝑥&lt;/font&gt;&lt;sub&gt;&lt;font style="color:#DF2A3F;"&gt;𝑚&lt;/font&gt;&lt;/sub&gt;</code>是连续值——可用多项式分布建模</p>
 <h5 id="PAIDP">③隐马尔可夫模型（HMM）</h5>
 所有隐变量构成一个马尔可夫链
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732183548199-c6935779-03e7-4ebb-9e9f-e7d92c4add58.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732183548199-c6935779-03e7-4ebb-9e9f-e7d92c4add58.png" alt=""></p>
 <p><code>𝑝(𝒙, 𝒚;𝜃) =  ∏ 𝑝(𝑦&lt;sub&gt;𝑡&lt;/sub&gt;|𝑦&lt;sub&gt;𝑡−1&lt;/sub&gt;, 𝜃&lt;sub&gt;𝑠&lt;/sub&gt;) 𝑝(𝑥&lt;sub&gt;𝑡&lt;/sub&gt;|𝑦&lt;sub&gt;𝑡&lt;/sub&gt;, 𝜃&lt;sub&gt;𝑡&lt;/sub&gt;)</code></p>
 <p>转移概率		    输出概率</p>
 <p><strong>《机器学习方法》中关于隐马尔可夫模型的内容：</strong></p>
@@ -1490,22 +1490,22 @@ K维随机变量——联合概率为高维空间分布——难建模——需�
 <h4 id="JvO88">（4）常见的无向图模型</h4>
 <h5 id="U8f2w">①对数线性模型=条件最大熵模型=Softmax回归模型</h5>
 刚才提到的吉布斯分布`𝑝(𝒙) = 1/𝑍 ∏ 𝜙<sub>𝑐</sub>(𝒙<sub>𝑐</sub>)` ，让其中的`𝜙<sub>𝑐</sub>(𝒙<sub>𝑐</sub>)`为：
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732431840066-0d4487a7-8478-4f3b-a826-5a9d9cc58d69.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732431840066-0d4487a7-8478-4f3b-a826-5a9d9cc58d69.png" alt=""></p>
 <p>然后取对数：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732431951765-c0306155-024d-4288-8e93-dd73661e4f36.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732431951765-c0306155-024d-4288-8e93-dd73661e4f36.png" alt=""></p>
 <p><code>𝑓&lt;sub&gt;𝑐&lt;/sub&gt;(𝒙&lt;sub&gt;𝑐&lt;/sub&gt;)</code> 为定义在 <code>𝒙&lt;sub&gt;𝑐&lt;/sub&gt; </code>上的特征向量；<code>𝜃&lt;sub&gt;𝑐&lt;/sub&gt;</code> 为权重向量</p>
 <p>然后得到 <code>𝑝(𝑦|𝒙;𝜃)</code>：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732432705223-a1a99212-9e15-4b56-bdfa-cfc0c6fbcbbf.png" alt></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732432717916-a87ea1e0-b49e-4c05-b9c0-99de5a5cfc8e.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732432705223-a1a99212-9e15-4b56-bdfa-cfc0c6fbcbbf.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732432717916-a87ea1e0-b49e-4c05-b9c0-99de5a5cfc8e.png" alt=""></p>
 <p><strong>《机器学习方法》中关于最大熵模型的内容：</strong></p>
 <p><a target="_blank" rel="noopener" href="https://www.yuque.com/yuqueyonghucoit3e/wefx9h/kuyviah06zprz9yd">第6章 逻辑斯谛回归与最大熵模型</a></p>
 <h5 id="vo5e5">②条件随机场</h5>
 对y要有分解，即：
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732433459453-fd2bb0b8-a667-4372-a7f6-a5017304ef74.png" alt></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732433513466-f481cd6b-87f5-46ea-9916-a5cd2037f8d3.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732433459453-fd2bb0b8-a667-4372-a7f6-a5017304ef74.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732433513466-f481cd6b-87f5-46ea-9916-a5cd2037f8d3.png" alt=""></p>
 <p>（可以对比最大熵模型的条件概率公式，可以发现做了分解）</p>
 <p>线性链条件随机场的条件概率：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732433649652-f447f7b7-762b-47d0-9e94-f5393ffa3188.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732433649652-f447f7b7-762b-47d0-9e94-f5393ffa3188.png" alt=""></p>
 <p><strong>《机器学习方法》中关于条件随机场的内容：</strong></p>
 <p><a target="_blank" rel="noopener" href="https://www.yuque.com/yuqueyonghucoit3e/wefx9h/sqqfozz09h4bxwmi">第11章 条件随机场</a></p>
 <h5 id="HaBv0">③玻尔兹曼机</h5>
@@ -1518,7 +1518,7 @@ K维随机变量——联合概率为高维空间分布——难建模——需�
 <p><strong><font style="color:#DF2A3F;">（注意不是所有关系，比如无向图是不能表示因果关系的）</font></strong></p>
 <h5 id="ijXOF">②过程--道德化</h5>
 看图理解就行：
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732435783230-e206844d-6501-403d-a437-956c2d752a55.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732435783230-e206844d-6501-403d-a437-956c2d752a55.png" alt=""></p>
 <h2 id="cIrVm">三、模型的学习</h2>
 <h3 id="eVv2X">1.分类</h3>
 寻找最优网络结构（难，专家构建）+ 已知网络结构估计每个条件概率分布参数（按包不包含隐变量分两种）
@@ -1532,7 +1532,7 @@ K维随机变量——联合概率为高维空间分布——难建模——需�
 <p>可以拆成部分连乘形式，然后log一下，就变成了累加~</p>
 <h5 id="sag9l">②第二步，最大化对数似然`ℒ(𝒟; 𝜃)`</h5>
 转化为分别最大化每个变量的条件似然，即：
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732450345026-e30f3f9d-ceb1-4576-af2e-f78d58f2e07b.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732450345026-e30f3f9d-ceb1-4576-af2e-f78d58f2e07b.png" alt=""></p>
 <pre><code>    * 如果x离散——使用参数化模型减少参数量——例如用Sigmoid信念网络
     * 如果x连续——用高斯函数表示条件概率分布——高斯信念网络
 </code></pre>
@@ -1540,12 +1540,12 @@ K维随机变量——联合概率为高维空间分布——难建模——需�
 <h5 id="tyWpf">①第一步，构造对数似然</h5>
 ![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1732451547729-41a915a2-a496-46fc-ae09-7dedb9ca4d57.png)
 <p>这里直接就代入了对数线性模型的概率公式：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732451683933-c6c5f730-d40e-4f77-81d5-b62fdda40513.png" alt></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732451713638-d58634f0-0c33-4468-84a0-fb7917505bde.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732451683933-c6c5f730-d40e-4f77-81d5-b62fdda40513.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732451713638-d58634f0-0c33-4468-84a0-fb7917505bde.png" alt=""></p>
 <h5 id="l259t">②第二步，最大化对数似然`ℒ(𝒟; 𝜃)`</h5>
 用梯度上升方法：
 <p>求关于𝜃<sub>𝑐</sub> 的偏导数，推导过程如下</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732451927296-28f92d00-455b-4d2f-8bdc-45eabd30742c.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732451927296-28f92d00-455b-4d2f-8bdc-45eabd30742c.png" alt=""></p>
 <p>最优点梯度为0，也就是式11.37等于0，从而也就是书上说的“优化目标等价于：对于每个团 𝑐 上的特征 𝑓<sub>𝑐</sub>(𝒙<sub>𝑐</sub>)，使得其在经验分布  ̃𝑝(𝒙) 下的期望等于其在模型分布 𝑝(𝒙; 𝜃) 下的期望”</p>
 <p>式11.37的后半部分（在模型分布下的期望）很难算，通常采用近似，有两种方式：</p>
 <p>a.利用采样来近似计算期望</p>
@@ -1556,7 +1556,7 @@ K维随机变量——联合概率为高维空间分布——难建模——需�
 &gt;
 <p><strong>逻辑</strong>：首先我们有一个样本 𝒙 的边际似然函数（i.e.证据）</p>
 <p>然后构造对数似然，和前面”不含隐变量的参数估计“部分的公式原理相同，长下面这样</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732453050356-b3b73707-88ab-47d2-ac16-b22a35378edd.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1732453050356-b3b73707-88ab-47d2-ac16-b22a35378edd.png" alt=""></p>
 <p>然后我们要最大化对数似然，但涉及到 𝑝(𝑥) 的推断问题（导致对数函数内部的求和/积分去不掉且难算）</p>
 <p>然后我们就引入变分函数𝑞(𝒛)（定义在隐变量 𝒁 上的分布）来解决问题，得到下面这样</p>
 <pre><code>![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1732453192935-083b22ef-2d25-4118-891e-48487015a778.png)
@@ -1584,13 +1584,13 @@ K维随机变量——联合概率为高维空间分布——难建模——需�
 <h4 id="uXRIe">（1）变量消除法</h4>
 `p(x<sub>1</sub>|x<sub>4</sub>)=p(x<sub>1</sub> , x<sub>4</sub>) / p(x<sub>4</sub>)`
 <p>其中：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734680575646-037268e4-d3bf-4733-bf75-f4ec9b5c7116.png" alt></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734681007597-d391be22-debf-4405-8120-95b44abd8803.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734680575646-037268e4-d3bf-4733-bf75-f4ec9b5c7116.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734681007597-d391be22-debf-4405-8120-95b44abd8803.png" alt=""></p>
 <p>这个过程中消除了变量，减少计算边际分布的计算复杂度</p>
 <h4 id="ZFoqV">（2）信念传播算法=BP算法=和积算法=消息传递算法</h4>
 思想：将变量消除法的和积操作看作消息并保存
 <p>消息传递过程：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734681770197-a0f0547a-f35f-45c4-b225-24ceb13df0a1.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734681770197-a0f0547a-f35f-45c4-b225-24ceb13df0a1.png" alt=""></p>
 <h5 id="ZEQly">树结构上的信念传播算法</h5>
 ![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1734682085914-cd956ed9-69be-4b24-a7b2-b3736e6f51a0.png)
 <h3 id="E6KUZ">3.近似推断</h3>
@@ -1606,9 +1606,9 @@ if图模型结构复杂=&gt;精确推断开销大
 <h2 id="h9kWI">五、变分推断</h2>
 泛函：函数的函数，输入是函数，输出是实数=&gt; f(x)的泛函：F(f(x))
 <p>变分法：寻找使F(f(x))取得极大/极小值的f(x)</p>
-<p>变分推断：推断问题转换为泛函优化问题——<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734685101039-de38636a-ae90-4b6a-97bd-3f70ef45bdbc.png" alt>最小化变分分布和真实分布差异</p>
+<p>变分推断：推断问题转换为泛函优化问题——<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734685101039-de38636a-ae90-4b6a-97bd-3f70ef45bdbc.png" alt="">最小化变分分布和真实分布差异</p>
 <p>这个问题的解法：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734686049345-b34320f9-b5a1-4e84-a7ed-9d1a03a11cee.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734686049345-b34320f9-b5a1-4e84-a7ed-9d1a03a11cee.png" alt=""></p>
 <h2 id="FvcQ5">六、基于采样法的近似推断</h2>
 ![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1734790562062-5efb041b-1a24-47f0-a957-2a454d9d2963.png)	其中要推断的概率分布为p(x)，采样法近似计算这个期望
 <h3 id="cCl42">1.采样法=蒙特卡罗方法=统计模拟方法</h3>
@@ -1621,11 +1621,11 @@ if图模型结构复杂=&gt;精确推断开销大
 <h3 id="MrdyV">2.拒绝采样=接受-拒绝采样</h3>
 p(x)难以采样 =&gt; 引入容易的采样的分布q(x) 称为提议分布 =&gt; 以某**<font style="color:#DF2A3F;">标准</font>**拒绝一部分样本 =&gt; 最终采集的样本浮层p(x) 【kq(x)覆盖未归一化的分布p(x)——kq(x)≥p(x)】
 <p><strong><font style="color:#DF2A3F;">标准</font></strong>：每次抽取样本的接受概率</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734791678715-f8c8ae40-382b-4433-bb27-77d5161e98c2.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734791678715-f8c8ae40-382b-4433-bb27-77d5161e98c2.png" alt=""></p>
 <p>判断拒绝采样的好坏：拒绝率太高，采样效率会不理想</p>
 <h3 id="yoQOG">3.重要性采样</h3>
 思想：我只是想算那个期望（𝔼𝑝[𝑓(𝑥)]），抽取的样本其实不用严格服从p(x)，所以用提议分布q(x)直接采样并估计期望
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734792317276-822ffe69-1c8f-40b2-98da-686e4e54ff43.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734792317276-822ffe69-1c8f-40b2-98da-686e4e54ff43.png" alt=""></p>
 <p>w(x)是重要性权重</p>
 <h3 id="oGTmP">4.马尔可夫链蒙特卡罗方法 MCMC</h3>
 思想：将采样过程看成马尔可夫链——第t+1次采样依赖于第t次抽取的样本和状态转移分布（即提议分布）
@@ -1642,7 +1642,7 @@ p(x)难以采样 =&gt; 引入容易的采样的分布q(x) 称为提议分布 =&g
 可看作MH算法的特例
 <p>思想：使用全条件概率作为提议分布，对每个维度采样，设置接受率A=1</p>
 <p>全条件概率：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734793771706-409738d2-dadf-4114-a237-052294c00b99.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734793771706-409738d2-dadf-4114-a237-052294c00b99.png" alt=""></p>
 <p>每单步采样构成马尔可夫链。</p>
 <h3 id="nAKdB">5.几种方法的对比</h3>
 拒绝采样、重要性采样——效率随空间维数的增加而指数降低
@@ -1651,7 +1651,7 @@ p(x)难以采样 =&gt; 引入容易的采样的分布q(x) 称为提议分布 =&g
 <h2 id="KScF4">一、玻尔兹曼机</h2>
 <h3 id="NLw3k">1.形式</h3>
 看图理解
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734796524691-e180d359-03a2-4bfc-a923-5b04a03d0766.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734796524691-e180d359-03a2-4bfc-a923-5b04a03d0766.png" alt=""></p>
 <h3 id="n03kA">2.玻尔兹曼分布</h3>
 ![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1734796646984-6711063e-c282-4808-b498-e0be102a6b2a.png)
 <p>𝐸<sub>𝛼</sub> 为状态 𝛼 的能量，𝑘 为玻尔兹曼常量，𝑇 为系统温度,  exp( −𝐸<sub>𝛼</sub> /𝑘𝑇 ) 称 为玻尔兹曼因子</p>
@@ -1681,35 +1681,35 @@ T → ∞ ： 可以很快达到热平衡
 <h3 id="a2lo5">6.参数学习</h3>
 学习的参数是：W和b
 <p>定义对数似然函数后求偏导</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734807044635-9de356f5-3af0-4fec-b59e-d49ddcb13f31.png" alt></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734808682577-bc3b2a42-1820-421a-ae19-93a334c27a2a.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734807044635-9de356f5-3af0-4fec-b59e-d49ddcb13f31.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734808682577-bc3b2a42-1820-421a-ae19-93a334c27a2a.png" alt=""></p>
 <p>涉及计算配分函数和期望，难精确计算，所以用MCMC方法来近似求解：</p>
 <p>固定住可观测变量 𝒗，只对 𝒉 进行吉布斯采样</p>
 <p>=&gt; 达到热平衡，采样x<sub>i</sub> x<sub>j</sub>的值</p>
 <p>=&gt; 近似期望</p>
 <h2 id="AQ5OT">二、受限玻尔兹曼机</h2>
 玻尔兹曼机每更新一次权重就要重新热平衡，低效
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734809842162-64f42c0f-ccf5-4c69-8066-bcfdfa3e5a17.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734809842162-64f42c0f-ccf5-4c69-8066-bcfdfa3e5a17.png" alt=""></p>
 <p>规定能量函数和联合概率分布：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734852124541-96fdb738-0882-4501-a5b9-398283731918.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734852124541-96fdb738-0882-4501-a5b9-398283731918.png" alt=""></p>
 <h3 id="iEkwR">1.生成模型</h3>
 给定联合分布概率：
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734853364005-2febe201-d902-4fe3-aaf9-233d7275c700.png" alt></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734853904348-77c5b7ec-32d4-493b-b1af-31d94b58a9b7.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734853364005-2febe201-d902-4fe3-aaf9-233d7275c700.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734853904348-77c5b7ec-32d4-493b-b1af-31d94b58a9b7.png" alt=""></p>
 <p>吉布斯采样：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734855168838-f32d84b2-4fd9-48cf-a21c-f74e2e666832.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734855168838-f32d84b2-4fd9-48cf-a21c-f74e2e666832.png" alt=""></p>
 <h3 id="q6TSW">2.参数学习</h3>
 要学习的参数：W a b
 <p>方法：最大化对数似然函数</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734855677926-171af57b-16dd-46fd-a364-419911fdffb6.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734855677926-171af57b-16dd-46fd-a364-419911fdffb6.png" alt=""></p>
 <p>求偏导</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734855713346-93110036-b3a6-4eee-a7b9-d93b1d070cd4.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734855713346-93110036-b3a6-4eee-a7b9-d93b1d070cd4.png" alt=""></p>
 <p>要算配分函数和俩期望，难算，用MCMC方法近似：</p>
 <pre><code> 固定v并设为训练样本中的值，根据条件概率对h采样，
 
  再不固定v，通过**吉布斯采样**轮流更新v和h，达到热平衡采集v和h的值
 </code></pre>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734855819640-768a7acf-0968-4fe2-a676-faf5cf39fe6e.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734855819640-768a7acf-0968-4fe2-a676-faf5cf39fe6e.png" alt=""></p>
 <h4 id="gXYha">对比散度学习算法（对受限玻尔兹曼机来说，比吉布斯采样更有效）</h4>
 【CD-k算法】
 <p>用一个训练样本作v的初始值 =&gt; 交替对v和h进行吉布斯采样 =&gt;不需要等到收敛，k步足够</p>
@@ -1720,8 +1720,8 @@ T → ∞ ： 可以很快达到热平衡
 <h2 id="Ui3lE">三、深度信念网络 DBN</h2>
 ![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1734856597048-732159c8-0c9f-4db3-8cf0-f78330bf0f5c.png)
 <p>有：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734856848614-401440eb-a9ae-4aa0-84ea-2c0a2f866f3e.png" alt>且<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734856893382-4db6b3ea-5aac-42a6-aa01-cd723b50db0b.png" alt></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734856877023-7337507f-9ea6-440c-be02-d85a4a1d7cba.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734856848614-401440eb-a9ae-4aa0-84ea-2c0a2f866f3e.png" alt="">且<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734856893382-4db6b3ea-5aac-42a6-aa01-cd723b50db0b.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734856877023-7337507f-9ea6-440c-be02-d85a4a1d7cba.png" alt=""></p>
 <h3 id="JzuFr">1.生成模型</h3>
 生成样本过程：
 <p>运行顶层受限玻尔兹曼机，进行足够多次吉布斯采样</p>
@@ -1769,32 +1769,32 @@ T → ∞ ： 可以很快达到热平衡
 <h2 id="ho4Xg">二、变分自编码器</h2>
 为了得到，拆解为：![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872132020-29cfc142-d992-4720-8a53-6564c6d4d86b.png)
 <p>假设拆解后的这两个分布都服从某种参数化分布族，则用最大似然来估计</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872212071-28d2e2b9-7b07-4cf0-8378-a64ef61d194f.png" alt></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872221422-4a026eed-9c6c-412e-8793-07354e29e21b.png" alt></p>
-<p>其中<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872245297-dff73eee-ee45-4229-bd70-b090bf0554bf.png" alt>是额外引入的变分密度函数</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872212071-28d2e2b9-7b07-4cf0-8378-a64ef61d194f.png" alt=""></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872221422-4a026eed-9c6c-412e-8793-07354e29e21b.png" alt=""></p>
+<p>其中<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872245297-dff73eee-ee45-4229-bd70-b090bf0554bf.png" alt="">是额外引入的变分密度函数</p>
 <p>最大似然过程用EM：</p>
-<p>E：寻<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872327662-eaa2c392-5837-4277-837a-d1a9a831512d.png" alt>等于/接近<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt></p>
-<p>M：固定<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872327662-eaa2c392-5837-4277-837a-d1a9a831512d.png" alt>，找θ，最大化ELBO</p>
-<p>理论最优<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872327662-eaa2c392-5837-4277-837a-d1a9a831512d.png" alt>=<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt>：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872406231-9a674c89-3979-47ec-9912-78154f69f72a.png" alt>，但这个<strong>不好计算</strong></p>
-<p>解决方案：变分推断，近似估计，用简单的<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872327662-eaa2c392-5837-4277-837a-d1a9a831512d.png" alt>来近似推断<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt></p>
-<p>问题：<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt>一般复杂，近似效果不好，也难用已知分布族函数建模</p>
+<p>E：寻<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872327662-eaa2c392-5837-4277-837a-d1a9a831512d.png" alt="">等于/接近<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt=""></p>
+<p>M：固定<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872327662-eaa2c392-5837-4277-837a-d1a9a831512d.png" alt="">，找θ，最大化ELBO</p>
+<p>理论最优<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872327662-eaa2c392-5837-4277-837a-d1a9a831512d.png" alt="">=<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt="">：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872406231-9a674c89-3979-47ec-9912-78154f69f72a.png" alt="">，但这个<strong>不好计算</strong></p>
+<p>解决方案：变分推断，近似估计，用简单的<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872327662-eaa2c392-5837-4277-837a-d1a9a831512d.png" alt="">来近似推断<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt=""></p>
+<p>问题：<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt="">一般复杂，近似效果不好，也难用已知分布族函数建模</p>
 <p>解决方案：变分自编码器</p>
 <p>解决具体方式：</p>
-<p>用神经网络估计<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872327662-eaa2c392-5837-4277-837a-d1a9a831512d.png" alt>（近似<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt>）——这个神经网络称为推断网络——输入x，输出<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874168597-1067d6f0-e503-4a90-869a-8483f7d66f38.png" alt></p>
-<p>【推断网络的目标：<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874168597-1067d6f0-e503-4a90-869a-8483f7d66f38.png" alt>尽可能接近真实后验<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt> =&gt; 最小化KL =&gt; 找到网络参数**<font style="color:#DF2A3F;">𝜙</font><strong><sup></sup></strong><font style="color:#DF2A3F;">∗</font>**使得ELBO最大】</p>
+<p>用神经网络估计<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872327662-eaa2c392-5837-4277-837a-d1a9a831512d.png" alt="">（近似<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt="">）——这个神经网络称为推断网络——输入x，输出<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874168597-1067d6f0-e503-4a90-869a-8483f7d66f38.png" alt=""></p>
+<p>【推断网络的目标：<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874168597-1067d6f0-e503-4a90-869a-8483f7d66f38.png" alt="">尽可能接近真实后验<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt=""> =&gt; 最小化KL =&gt; 找到网络参数**<font style="color:#DF2A3F;">𝜙</font><strong><sup></sup></strong><font style="color:#DF2A3F;">∗</font>**使得ELBO最大】</p>
 <pre><code>   用神经网络估计![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872812773-687a53bd-48f6-4afe-a15c-49425ffef82a.png)——这个神经网络称为生成网络——输入z，输出![](https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872799769-2ccebd70-c4ed-43da-9454-6839272596b3.png)
 </code></pre>
-<p>（<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874588271-a79e2d0d-8c05-4153-854f-e73106b4d042.png" alt>可分为 隐变量 𝒛 的先验分布<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874549927-c94f5f9c-81b7-44ad-86a6-99d7e06cb7f7.png" alt>和条件概率分布<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874562219-714d1fc3-ade9-4f79-9efb-e3d57bd9fc3e.png" alt>）</p>
+<p>（<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874588271-a79e2d0d-8c05-4153-854f-e73106b4d042.png" alt="">可分为 隐变量 𝒛 的先验分布<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874549927-c94f5f9c-81b7-44ad-86a6-99d7e06cb7f7.png" alt="">和条件概率分布<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874562219-714d1fc3-ade9-4f79-9efb-e3d57bd9fc3e.png" alt="">）</p>
 <p>【生成网络的目标：找到网络参数**<font style="color:#DF2A3F;">θ</font><strong><sup></sup></strong><font style="color:#DF2A3F;">∗</font>**使得ELBO最大】</p>
-<p>【注意<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt>和<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872812773-687a53bd-48f6-4afe-a15c-49425ffef82a.png" alt> 和<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874168597-1067d6f0-e503-4a90-869a-8483f7d66f38.png" alt>not the same】</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734873905175-904363a2-402f-441c-810b-ef9494379b1b.png" alt></p>
+<p>【注意<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872347092-b0ea8dc8-cdeb-46e0-ace0-ac7fffeeada0.png" alt="">和<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734872812773-687a53bd-48f6-4afe-a15c-49425ffef82a.png" alt=""> 和<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734874168597-1067d6f0-e503-4a90-869a-8483f7d66f38.png" alt="">not the same】</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734873905175-904363a2-402f-441c-810b-ef9494379b1b.png" alt=""></p>
 <p>汇合推断网络和生成网络的目标（都是使证据下界ELBO最大）：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734875204678-2b90be01-0b9c-43a0-b6f7-f6509ccb8bb5.png" alt><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734875222457-4ad1c8b5-e26a-4b1c-a7ee-e9f4985240d6.png" alt></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734875204678-2b90be01-0b9c-43a0-b6f7-f6509ccb8bb5.png" alt=""><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734875222457-4ad1c8b5-e26a-4b1c-a7ee-e9f4985240d6.png" alt=""></p>
 <p>再参数化：𝑓(𝜃) 的参数 𝜃=𝑔(𝜗)，则 𝑓(𝜗)= 𝑓(𝑔(𝜗))</p>
-<p>引入分布为𝑝(𝜖) 的随机变量 𝜖，把目标的第一项期望写成<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734875854657-2c217ee0-93ea-450a-ac65-9af9ab09de19.png" alt></p>
-<p>假设第二项的<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734875907074-c4bc69bb-d11b-4c4d-964a-462e99e4d6a3.png" alt>有：</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734875982235-d75a48db-a21d-41c0-9887-95c5c9dfab6a.png" alt></p>
+<p>引入分布为𝑝(𝜖) 的随机变量 𝜖，把目标的第一项期望写成<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734875854657-2c217ee0-93ea-450a-ac65-9af9ab09de19.png" alt=""></p>
+<p>假设第二项的<img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734875907074-c4bc69bb-d11b-4c4d-964a-462e99e4d6a3.png" alt="">有：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2024/png/40781129/1734875982235-d75a48db-a21d-41c0-9887-95c5c9dfab6a.png" alt=""></p>
 <p>通过再参数化，可用梯度下降法来学习参数</p>
 
                 
