@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title>一加手机ROOT全流程&amp;记一次误操作后救砖经历</title>
+      <link href="/2025/12/15/post17/"/>
+      <url>/2025/12/15/post17/</url>
+      
+        <content type="html"><![CDATA[<p>先说ROOT，再说这次非常愚蠢的操作。。</p><blockquote><p>本文不为ROOT失败导致的任何异常结果负责</p></blockquote><h1>一、ROOT（Magisk为例）</h1><h2 id="1-准备工作">1. 准备工作</h2><ul><li>手机打开「开发者模式」：「设置」&gt;「关于本机」&gt;「版本信息」&gt; 连续点击，直到进入开发者模式</li><li>手机开启「OEM解锁」和「USB调试」：「设置」&gt;「系统与更新」&gt;「开发者选项」&gt; 找到这两项并打开</li><li>确保电脑安装了 ADB 和 Fastboot 驱动，测试方法：</li><li><ul><li>手机连接电脑，文件传输模式</li></ul></li><li><ul><li>打开命令行输入 <code>adb devices</code>，如果能看到一串代码和 device，说明 ADB 驱动正常</li></ul></li><li><ul><li>输入<code> adb reboot bootloader</code> 进入 Fastboot 模式，输入<code> fastboot devices</code>，如果能看到代码和 fastboot，说明驱动装好了</li></ul></li></ul><blockquote><p>如果没装驱动，自行去网上装一下吧~</p></blockquote><h2 id="2-解锁bootloader-会清空所有数据">2. 解锁Bootloader（会清空所有数据！）</h2><ul><li>用USB线连接手机和电脑</li><li>电脑下载<a href="https://mrzzoxo.lanzoue.com/b02plghuh">adb-fastboot</a>，解压后双击 <code>打开CMD命令行.bat</code>，输入 <code>adb reboot bootloader</code></li><li>等待手机重启、进入bootloader模式</li><li>手机进入bootloader模式后，继续在cmd输入 <code>fastboot flashing unlock</code></li><li>手机显示一串英文代码，此时长按「音量+键」以确定解锁bootloader；解锁成功后cmd会显示 <code>（bootloader）Start unlock flow</code></li></ul><blockquote><p>英文代码仅持续 5-6 秒，如果消失了请重新执行 解锁命令</p></blockquote><ul><li>继续在cmd输入 <code>fastboot reboot</code>，开机有黄色警告即成功；<br>也可在「设置」&gt;「系统与更新」&gt;「开发者选项」&gt;「OEM解锁」看是否变灰了</li></ul><h2 id="3-提取-init-boot-img">3. 提取 init_boot.img</h2><ul><li>下载<a href="https://mrzzoxo.lanzoue.com/b02plgdpi">payload-dumper-go</a>并解压</li><li>下载大侠阿木提供的<a href="https://yun.daxiaamu.com/OnePlus_Roms/">匹配机型和版本的ROM包</a>，解压并找到 <code>payload.bin</code> 文件</li><li>复制 <code>payload.bin</code> 文件到 payload-dumper-go 文件夹</li><li>双击 <code>打开CMD命令行.bat</code>，按需提取.img文件</li></ul><blockquote><p>boot.img：存放系统内核<br>init_boot.img：存放启动脚本</p><p>这里说一下提取哪个：<br>执行 <code>payload-dumper-go -l payload.bin</code>，然后分情况：</p><ul><li>情况 A（新机型，Android 13+）：如果在 payload 列表里看到了 init_boot.img，提取并修补 init_boot.img（不动 boot.img）</li><li>情况 B（老机型）：如果在 payload 列表里找不到 init_boot.img，提取并修补 boot.img</li></ul></blockquote><h2 id="4-magisk修补-init-boot-img">4. Magisk修补 init_boot.img</h2><ul><li>手机上下载 <a href="https://github.com/topjohnwu/Magisk/releases">Magisk</a></li><li>打开Magisk，点击首页Magisk卡片右侧的「安装」，点击「选择并修补一个文件」，找到刚才复制到「Download」下的 <code>init_boot.img</code>，点击「开始」</li><li>看到 <code>All done！</code> 就可以了</li></ul><h2 id="5-刷入修补后的文件">5. 刷入修补后的文件</h2><ul><li>打开手机「Download」目录，把 <code>magisk-xxxxxx.img</code> 复制到电脑「adb-fastboot」 目录</li><li>双击 <code>打开CMD命令行.bat</code>，输入 <code>adb reboot bootloader</code></li><li>进入bootloader模式后，cmd中输入 <code>fastboot flash boot magisk-xxxxxx.img</code>，其中 <code>magisk-xxxxxx.img</code> 要注意是自己上面修补的那个</li><li>看到 “Finished” “OKAY” 就可以了，输入 <code>fastboot reboot</code> 重启</li></ul><h2 id="6-验证magisk刷入成功">6. 验证Magisk刷入成功</h2><ul><li>打开Magisk，看到Magisk卡片中「当前」能显示版本即可</li></ul><h1>二、提示</h1><ul><li>除了用adb命令，也可以关机后长按「关机键」+「音量-键」进入bootloader模式</li><li>可以用大侠阿木的工具箱： <a href="https://optool.daxiaamu.com/optool">一加全能工具箱</a>，但本人没用</li><li><strong>只要电脑连接手机，手机选择文件传输模式</strong></li><li>一定要注意ROM版本对应，因为从对应 <code>payload.bin</code> 中提取的.img文件</li><li>本机版本为 一加 Ace5 竞速版，型号PLF110</li></ul><h1>三、救砖</h1><blockquote><p>严格来说也不是砖，而是处在“Orange State”并陷入无限重启的循环中</p></blockquote><h2 id="1-我做错了什么">1. 我做错了什么</h2><ul><li>由于之前刷过一次Magisk，忘记关手机的自动更新了，它更了一个版本，原有的Magisk失效了；</li><li>因此我想重新刷一次，结果忘记要刷的是 <code>init_boot.img</code> 了，刷成了 <code>boot.img</code>；</li><li>然后发现失败了，这个时候求助Qwen来着（我再也不相信Qwen了），它认为 <strong>AVB 2.0 的 vbmeta 验证阻止了 Magisk 加载</strong>；</li><li>于是Qwen叫我下载github开源的 <code>vbmeta.img</code>，但给了个空链接，后面又让我自己写了一个，反正一直叫我刷进去，刷进去就成这样了</li></ul><blockquote><p>确实这种事情不能让大模型搞，明知有幻觉，居然不小心相信他了。</p></blockquote><h2 id="2-怎么解决">2. 怎么解决</h2><ul><li>由于不想丢数据，所以不想重刷；</li><li>问题出在启动上，因此要把跟“启动”有关的所有原厂零件，全部一次性换回去；</li><li>还好有 <code>payload.bin</code>，执行：</li></ul><pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">payload-dumper-go -p vbmeta,vbmeta_system,vbmeta_vendor,boot,vendor_boot,init_boot payload.bin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ul><li>这些6个文件被提取到了extracted文件夹，然后依次刷回去（由于无限重启，进bootloader只能通过长按「关机键」+「音量-键」进入，而且最好趁没显示Orange State等告警信息时的间隙去按），执行：</li></ul><pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">fastboot flash boot_a boot.imgfastboot flash init_boot_a init_boot.imgfastboot flash vendor_boot_a vendor_boot.imgfastboot flash vbmeta_a vbmeta.imgfastboot flash vbmeta_system_a vbmeta_system.imgfastboot flash vbmeta_vendor_a vbmeta_vendor.img<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li>然后 <code>fastboot reboot</code> ，看看怎么样，如果还不行，可以尝试强制禁用官方校验，执行：</li></ul><pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">fastboot flash boot_a boot.imgfastboot flash init_boot_a init_boot.imgfastboot flash vendor_boot_a vendor_boot.imgfastboot flash vbmeta_a vbmeta.img --disable-verity --disable-verificationfastboot flash vbmeta_system_a vbmeta_system.img --disable-verity --disable-verificationfastboot flash vbmeta_vendor_a vbmeta_vendor.img --disable-verity --disable-verification<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li>然后 <code>fastboot reboot</code> ，应该没问题了</li></ul><blockquote><p>这个问题换slot没用；简单把误刷入的vbmeta.img给erase掉也没用；<br>如果遇到这类启动的问题，可以尝试一下本文重刷启动模块的经验</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 经验记录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 移动应用 </tag>
+            
+            <tag> ROOT </tag>
+            
+            <tag> 安卓 </tag>
+            
+            <tag> ADB </tag>
+            
+            <tag> Fastboot </tag>
+            
+            <tag> 刷机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>精读 Dataflow Analysis-Inspired Deep Learning for Efficient Vulnerability Detection</title>
       <link href="/2025/07/26/post16/"/>
       <url>/2025/07/26/post16/</url>
